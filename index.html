@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blatta Lab｜蜚蠊介紹與販售</title>
+<style>
+body { background:#0b0d10; color:#e7ecf3; font-family:sans-serif; margin:0; }
+header { padding:20px; background:#12161b; position:sticky; top:0; z-index:100; }
+h1 { margin:0; font-size:1.5em; }
+.search-box { margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; }
+.search-input, .difficulty { padding:8px; border-radius:6px; border:none; font-size:14px; background:#0d1116; color:#e7ecf3; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; padding:20px; }
+.card { background:#12161b; border-radius:12px; overflow:hidden; border:1px solid #27313b; display:flex; flex-direction:column; }
+.thumb { width:100%; height:180px; background:#0d1116; display:flex; align-items:center; justify-content:center; }
+.thumb img { width:100%; height:100%; object-fit:cover; }
+.body { padding:14px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between; }
+.cn { font-size:14px; margin-top:4px; opacity:0.9; }
+.features, .origin, .habit, .diet, .temp, .tags, .info { font-size:12px; margin-top:4px; opacity:0.8; }
+.btn { display:inline-block; background:#8bd6c1; color:#091a14; padding:8px 12px; border-radius:8px; text-decoration:none; margin-top:8px; }
+.btn:hover { background:#78c2ad; }
+</style>
+</head>
+<body>
+<header>
+<h1>Blatta Lab｜蜚蠊介紹與販售</h1>
+<div class="search-box">
+  <input type="text" id="search" class="search-input" placeholder="搜尋物種或中文名稱...">
+  <select id="difficulty" class="difficulty">
+    <option value="">難度：不限</option>
+    <option value="1">★☆☆☆☆（新手）</option>
+    <option value="2">★★☆☆☆</option>
+    <option value="3">★★★☆☆</option>
+    <option value="4">★★★★☆</option>
+    <option value="5">★★★★★（進階）</option>
+  </select>
+</div>
+</header>
+<main class="grid" id="grid"></main>
+<script>
+const STORE = 'https://myship.7-11.com.tw/general/detail/GM2508133179359';
+const DATA = [
+  {genus:"Therea", species:"olegrandjeani", latin:"Therea olegrandjeani", cn:"問號蜚蠊", img:"images/IMG20181211214008.JPG", features:"黑底翅面中央白色問號狀斑紋", origin:"印度", habit:"地棲，日伏夜出", diet:"蔬果、寵物糧", temp:"24–28°C；60–80%（需乾濕分明）", diff:2, tags:["地棲","新手+"], info:"需提供濕度梯度以避免脫皮不良"},
+  {genus:"Therea", species:"bernhardti", latin:"Therea bernhardti", cn:"多米諾骨牌蜚蠊", img:"images/IMG_9342.JPG", features:"黑底白圓斑，似骨牌", origin:"印度", habit:"地棲，群居，常埋於枯葉土壤", diet:"蔬果、寵物糧", temp:"24–28°C；60–70%", diff:1, tags:["地棲","新手友善"], info:"適應性強，對環境要求低"},
+  {genus:"Therea", species:"regularis", latin:"Therea regularis", cn:"多米諾橘骨牌蜚蠊", img:"images/IMG_9157.JPG", features:"黑底搭配橘白斑，對比強烈", origin:"印度", habit:"地棲，喜隱於落葉與腐植層", diet:"蔬果、寵物糧", temp:"24–28°C；60–70%", diff:1, tags:["地棲","新手友善"], info:"容錯率高，新手適合"},
+  {genus:"Gyna", species:"caffrorum", latin:"Gyna caffrorum", cn:"卡佛爾瓷蠊", img:"images/Snapseed.jpg", features:"淡米至淺棕翅，細緻斑紋", origin:"南非", habit:"樹棲，短距飛行，成蟲夜行", diet:"蔬果、寵物糧", temp:"24–28°C；60–70%", diff:1, tags:["樹棲","新手友善"], info:"生命週期穩定、適應力佳"},
+  {genus:"Gyna", species:"centurio", latin:"Gyna centurio", cn:"百夫長瓷蠊（雄）", img:"images/IMG_7930.JPG", features:"雌雄二型明顯，雄米白、雌深褐斑為主", origin:"非洲中部", habit:"樹棲與地表混合活動，夜行", diet:"蔬果、寵物糧", temp:"24–28°C；60–70%", diff:1, tags:["樹棲","新手友善"], info:"繁殖容易，環境要求低"},
+  {genus:"Gyna", species:"centurio", latin:"Gyna centurio", cn:"百夫長瓷蠊（雌）", img:"images/IMG_7931.JPG", features:"雌雄二型明顯，雄米白、雌深褐斑為主", origin:"非洲中部", habit:"樹棲與地表混合活動，夜行", diet:"蔬果、寵物糧", temp:"24–28°C；60–70%", diff:1, tags:["樹棲","新手友善"], info:"繁殖容易，環境要求低"},
+  {genus:"Pseudoglomeris", species:"magnifica", latin:"Pseudoglomeris magnifica", cn:"越南金屬蜚蠊（雄）", img:"images/IMG_7950.JPG", features:"金綠金屬光澤，極為華麗", origin:"越南 Cuc Phuong（產地型）", habit:"樹棲，日隱樹皮縫，夜間活動", diet:"水果、花粉、寵物乾糧", temp:"24–27°C；70–80%（需通風）", diff:4, tags:["樹棲"], info:"需花粉與新鮮蔬果補充"},
+  {genus:"Pseudoglomeris", species:"magnifica", latin:"Pseudoglomeris magnifica", cn:"越南金屬蜚蠊（雌）", img:"images/IMG_7951.JPG", features:"金綠金屬光澤，極為華麗", origin:"越南 Cuc Phuong（產地型）", habit:"樹棲，日隱樹皮縫，夜間活動", diet:"水果、花粉、寵物乾糧", temp:"24–27°C；70–80%（需通風）", diff:4, tags:["樹棲"], info:"需花粉與新鮮蔬果補充"},
+  {genus:"Eucorydia", species:"dasytoides", latin:"Eucorydia dasytoides", cn:"帶紋绀蠊", img:"images/IMG_7960.JPG", features:"亮藍金屬色翼帶黃條", origin:"東南亞（含臺灣部分）", habit:"樹棲，飛行力佳；雄成蟲壽命短", diet:"花粉、蜂蜜水、蔬果、寵物乾糧", temp:"24–27°C；70–80%", diff:3, tags:["樹棲"], info:"生命週期長，成蟲期短；雄蟲需供應花粉"},
+  {genus:"Macropanesthia", species:"rhinoceros", latin:"Macropanesthia rhinoceros", cn:"犀牛蜚蠊", img:"images/IMG_8750.JPG", features:"世界最重大型蜚蠊，體型厚重棕黑", origin:"澳洲昆士蘭", habit:"土棲，挖掘地洞久居", diet:"尤加利落葉（需無毒品種）、胡桃葉等", temp:"24–28°C；60–75%（厚底材可挖）", diff:5, tags:["土棲","進階"], info:"生長周期極長、食材有特定需求"}
+];
+
+function makeCard(item){
+  return `<div class="card">
+    <div class="thumb">${item.img ? `<img src="${item.img}" alt="${item.cn}">` : `<div class='ph'>待補圖片</div>`}</div>
+    <div class="body">
+      <div>
+        <div class="latin">${item.latin}</div>
+        <div class="cn">${item.cn}</div>
+        <div class="features">特徵：${item.features}</div>
+        <div class="origin">原產地：${item.origin}</div>
+        <div class="habit">習性：${item.habit}</div>
+        <div class="diet">食性：${item.diet}</div>
+        <div class="temp">溫濕度：${item.temp}</div>
+        <div class="tags">標籤：${item.tags.join("、")}</div>
+        <div class="info">備註：${item.info}</div>
+      </div>
+      <a class="btn" href="${STORE}" target="_blank">前往購買</a>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const filter = document.getElementById('search').value.trim().toLowerCase();
+  const diff = document.getElementById('difficulty').value;
+  document.getElementById('grid').innerHTML = DATA
+    .filter(item => {
+      const matchText = item.cn.includes(filter) || item.latin.toLowerCase().includes(filter);
+      const matchDiff = diff ? item.diff === Number(diff) : true;
+      return matchText && matchDiff;
+    })
+    .map(makeCard).join('');
+}
+
+document.getElementById('search').addEventListener('input', render);
+document.getElementById('difficulty').addEventListener('change', render);
+
+render();
+</script>
+</body>
+</html>
