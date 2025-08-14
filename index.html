@@ -66,6 +66,8 @@
 
 /* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
 
+/* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+
 /* 手機版響應式補丁 */
 @media (max-width: 720px) {
   .grid {
@@ -76,19 +78,30 @@
   .card {
     grid-column: span 1 !important;
     margin: 0 8px; /* 左右留白 */
+    overflow: hidden; /* 確保圖片不會超出卡片 */
   }
   
   .thumb {
     aspect-ratio: 16/10; /* 保持原比例但限制高度 */
     max-height: 200px; /* 限制最大高度 */
     overflow: hidden;
+    width: 100%; /* 確保填滿整個寬度 */
+    margin: 0 !important; /* 移除任何邊距 */
+    padding: 0 !important; /* 移除任何內距 */
+    border-radius: 0; /* 移除圖片區域的圓角 */
+    background: none !important; /* 移除預設背景 */
+    display: block !important; /* 改為 block 而非 grid */
   }
   
   .thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block; /* 移除 inline 間距 */
+    margin: 0;
+    padding: 0;
+    border-radius: 0; /* 圖片本身不要圓角 */
   }
   
   .card-body {
