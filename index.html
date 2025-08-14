@@ -21,19 +21,24 @@
     .logo svg{width:22px;height:22px;fill:#0e1012}
     .nav a{padding:8px 10px;border-radius:10px;color:var(--muted);text-decoration:none;transition:.2s}
     .nav a:hover{color:var(--text);background:var(--panel)}
+
     .hero{padding:56px 24px 8px}
     .hero h1{font-size:40px;margin:0 0 8px}
     .hero p{margin:0;color:var(--muted)}
+
     .toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--ring);padding:12px;border-radius:14px;margin:18px 0}
     .toolbar input,.toolbar select{background:#0f1216;border:1px solid var(--ring);color:var(--text);padding:10px 12px;border-radius:10px;outline:none}
     .toolbar .chip{padding:8px 10px;border:1px solid var(--ring);border-radius:999px;cursor:pointer;color:var(--muted)}
     .toolbar .chip.active{background:var(--accent);color:var(--text)}
+
     .genus-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
     .tab{padding:10px 14px;border:1px solid var(--ring);border-radius:12px;color:var(--muted);cursor:pointer;background:var(--panel)}
     .tab.active{background:linear-gradient(180deg,#1a232d,#14202a);color:var(--text);border-color:#324150}
+
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
     @media (max-width:1000px){.grid{grid-template-columns:repeat(8,1fr)}}
     @media (max-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
+
     .card{grid-column:span 4;background:var(--card);border:1px solid var(--ring);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
     .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#1a2732,#0e1620);display:grid;place-items:center}
     .thumb .ph{font-size:12px;color:var(--muted);border:1px dashed #334152;padding:8px 10px;border-radius:10px}
@@ -49,26 +54,19 @@
     .btn{flex:1;text-align:center;text-decoration:none;padding:10px 12px;border-radius:12px;border:1px solid #2e3b48;background:linear-gradient(180deg,#1a232d,#121820);color:#d5dee7;font-weight:600}
     .btn:hover{border-color:#3a4958}
     .btn.primary{background:linear-gradient(180deg,#23c48c,#1aa67e);border-color:#25b588;color:#07110e}
+
     .section-title{display:flex;justify-content:space-between;align-items:center;margin:24px 0 8px}
     .section-title h2{margin:0;font-size:20px;color:#dce6ef}
     .count{color:var(--muted);font-size:14px}
+
     footer{margin-top:40px;border-top:1px solid var(--ring);padding:20px 24px;color:var(--muted)}
     .note{font-size:12px;color:var(--muted)}
-    /* Modal 視窗樣式 */
-    .modal-backdrop{
-      position:fixed;inset:0;background:rgba(0,0,0,0.6);
-      display:none;justify-content:center;align-items:center;z-index:100;
-    }
-    .modal{
-      background:var(--panel);border-radius:12px;padding:20px;max-width:500px;max-height:80vh;overflow:auto;color:var(--text);
-    }
-    .modal h3{margin-top:0}
-    .modal-close{
-      background:none;border:none;color:var(--muted);font-size:20px;position:absolute;top:10px;right:14px;cursor:pointer;
-    }
-  </style>
-</head>
-<body>
+
+    /* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+
+/* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+
+/* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
 
 /* 手機版響應式補丁 */
 @media (max-width: 720px) {
@@ -360,17 +358,7 @@
     <div>© <span id="year"></span> BlattaLab. All rights reserved.</div>
   </footer>
 
-  <!-- Modal -->
-  <div class="modal-backdrop" id="modal-backdrop">
-    <div class="modal">
-      <button class="modal-close" id="modal-close" aria-label="關閉">×</button>
-      <h3 id="modal-title"></h3>
-      <p id="modal-content"></p>
-    </div>
-  </div>
-
   <template id="card-tpl">
-    <!-- 保留原本的 card 模板 -->
     <article class="card" data-genus="" data-tags="">
       <div class="thumb" aria-hidden="true"><div class="ph">待補圖片</div></div>
       <div class="card-body">
@@ -389,7 +377,8 @@
   </template>
 
   <script>
-    
+    const STORE_URL = "https://myship.7-11.com.tw/general/detail/GM2508133179359";
+
     const DATA = [
       // 鼈蠊屬
       {genus:"Therea", species:"olegrandjeani", latin:"Therea olegrandjeani", cn:"問號蜚蠊", features:"黑底翅面中央白色問號狀斑紋", origin:"印度", habit:"地棲，日伏夜出", diet:"蔬果、寵物糧", temp:"24–28°C；60–80%（需乾濕分明）", diff:2, tags:["地棲","新手+"], info:"需提供濕度梯度以避免脫皮不良", img:"/Cockroach/images/IMG20181211214008.jpg"},
@@ -432,27 +421,28 @@
       return `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="${fill? '#f3c96a':'#3a4653'}" d="M12 17.3l-6.1 3.6 1.6-6.9L2 8.9l7-.6L12 1.9l3 6.4 7 .6-5.5 5.1 1.6 6.9z"/></svg>`
     }
 
-const STORE_URL = "https://myship.7-11.com.tw/general/detail/GM2508133179359";
-    const modalBackdrop = document.getElementById("modal-backdrop");
-    const modalTitle = document.getElementById("modal-title");
-    const modalContent = document.getElementById("modal-content");
-    const modalClose = document.getElementById("modal-close");
-
-    modalClose.addEventListener("click", ()=> modalBackdrop.style.display="none");
-    modalBackdrop.addEventListener("click", e=>{ if(e.target===modalBackdrop) modalBackdrop.style.display="none"; });
-    
-    function openModal(title, content){
-      modalTitle.textContent = title;
-      modalContent.textContent = content;
-      modalBackdrop.style.display = "flex";
-    }
-
     function makeCard(item){
       const tpl = document.getElementById('card-tpl');
       const node = tpl.content.firstElementChild.cloneNode(true);
       node.dataset.genus = item.genus;
       node.dataset.tags = item.tags.join(',');
 
+      const thumb = node.querySelector('.thumb');
+  if (item.img) {
+    const img = document.createElement('img');
+    img.src = item.img;
+    img.alt = item.cn;
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:18px 18px 0 0;';
+
+    img.onerror = function() {
+      this.style.display = 'none';
+      thumb.innerHTML = '<div class="ph">圖片載入失敗</div>';
+    };
+
+    thumb.innerHTML = '';
+    thumb.appendChild(img);
+  }
+      
       node.querySelector('.latin').textContent = `${item.latin}`;
       node.querySelector('.cn').textContent = item.cn;
       const meta = node.querySelector('.meta');
@@ -465,15 +455,20 @@ const STORE_URL = "https://myship.7-11.com.tw/general/detail/GM2508133179359";
       node.querySelector('.diet').textContent = `食性：${item.diet}`;
 
       const diffRow = node.querySelector('.diff');
-      diffRow.innerHTML = `難度：<span class="stars">${Array.from({length:5},(_,i)=>'<svg viewBox="0 0 24 24"><path fill="'+(i<item.diff?'#f3c96a':'#3a4653')+'" d="M12 17.3l-6.1 3.6 1.6-6.9L2 8.9l7-.6L12 1.9l3 6.4 7 .6-5.5 5.1 1.6 6.9z"/></svg>').join('')}</span>`;
+      diffRow.innerHTML = `難度：<span class="stars" aria-label="飼養難度 ${'★'.repeat(item.diff)}${'☆'.repeat(5-item.diff)}">${Array.from({length:5},(_,i)=>starSVG(i<item.diff)).join('')}</span>`;
 
       const [btnInfo, btnBuy] = node.querySelectorAll('.buy .btn');
       btnInfo.href = `#${item.genus}-${item.species}`;
       btnInfo.addEventListener('click', e=>{
-        e.preventDefault();
-        openModal(`${item.latin}（${item.cn}）`, item.info);
-      });
+  e.preventDefault();
+  const modal = document.getElementById('info-modal');
+  document.getElementById('modal-title').textContent = `${item.latin}（${item.cn}）`;
+  document.getElementById('modal-info').textContent = `重點：${item.info}`;
+  modal.style.display = 'flex';
+});
+
       btnBuy.href = STORE_URL;
+      btnBuy.setAttribute('aria-label', `${item.latin} 購買連結`);
       return node;
     }
 
@@ -553,11 +548,27 @@ const STORE_URL = "https://myship.7-11.com.tw/general/detail/GM2508133179359";
     }
 
     init();
-    document.addEventListener('click', e => {
-  if (e.target.matches('.modal-backdrop, .modal-close')) {
-    document.getElementById('speciesModal').setAttribute('aria-hidden', 'true');
+    
+    document.getElementById('modal-close').addEventListener('click', ()=>{
+  document.getElementById('info-modal').style.display = 'none';
+});
+
+document.getElementById('info-modal').addEventListener('click', e=>{
+  if(e.target.id==='info-modal'){
+    e.target.style.display = 'none';
   }
 });
+
   </script>
+    
+    <!-- Modal 結構 -->
+<div id="info-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;justify-content:center;align-items:center;">
+  <div style="background:var(--card);padding:24px;border-radius:16px;max-width:480px;width:90%;position:relative;box-shadow:0 8px 24px rgba(0,0,0,0.5);">
+    <button id="modal-close" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer;">&times;</button>
+    <h3 id="modal-title" style="margin-top:0;margin-bottom:12px;color:var(--brand);"></h3>
+    <p id="modal-info" style="color:var(--text);line-height:1.5;"></p>
+  </div>
+</div>
+
 </body>
 </html>
