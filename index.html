@@ -161,11 +161,70 @@
       <p class="note">※ 本頁資訊供飼養參考；各產地型態可能略有差異。</p>
     </section>
 
-    <section id="about" class="container" style="margin-top:28px">
-      <div class="section-title"><h2>關於 BlattaLab</h2></div>
-      <p style="color:var(--muted);max-width:80ch">品牌命名自蜚蠊目（Blattodea）與實驗室（Lab）。我們致力於以科學方法呈現蜚蠊的多樣性與生態功能，並提供穩定血統的飼養與教育服務。</p>
-    </section>
-  </main>
+    <!-- 修改後的 About 區段 -->
+<section id="about" class="container" style="margin-top:28px">
+  <div class="section-title"><h2>關於 BlattaLab</h2></div>
+  
+  <!-- 加入品牌視覺元素 -->
+  <div class="about-content" style="display: flex; gap: 24px; align-items: flex-start; margin-top: 16px;">
+    
+    <!-- Logo 視覺元素 -->
+    <div class="about-logo" style="flex-shrink: 0;">
+      <img src="images/logp.png" alt="BlattaLab Logo" style="
+        width: 80px; 
+        height: 80px; 
+        border-radius: 16px; 
+        box-shadow: 0 8px 24px rgba(33, 196, 140, 0.15);
+        border: 2px solid rgba(33, 196, 140, 0.2);
+      " />
+    </div>
+    
+    <!-- 品牌說明文字 -->
+    <div class="about-text" style="flex: 1;">
+      <p style="color:var(--muted);max-width:80ch;margin:0 0 16px 0;">
+        品牌命名自蜚蠊目（Blattodea）與實驗室（Lab）。我們致力於以科學方法呈現蜚蠊的多樣性與生態功能，並提供穩定的飼養與教育服務。
+      </p>
+      
+      <!-- 品牌理念 -->
+      <div style="background: var(--panel); padding: 16px; border-radius: 12px; border: 1px solid var(--ring);">
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; color: var(--brand); font-weight: 600;">品牌理念</h3>
+        <p style="margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5;">
+          結合科學研究的嚴謹態度與實驗室的精準標準，BlattaLab 不僅是蜚蠊愛好者的知識寶庫，更是連接學術研究與大眾教育的橋樑。每一個物種資訊都經過仔細驗證，每一份飼養建議都源於實際經驗。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 響應式調整 CSS -->
+<style>
+/* 響應式設計：小螢幕時改為垂直排列 */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  
+  .about-logo {
+    align-self: center;
+  }
+  
+  .about-logo img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+}
+
+/* Logo hover 效果 */
+.about-logo img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-logo img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(33, 196, 140, 0.25);
+}
+</style>
 
   <footer class="container">
     <div>© <span id="year"></span> BlattaLab. All rights reserved.</div>
