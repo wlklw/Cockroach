@@ -62,11 +62,33 @@
     footer{margin-top:40px;border-top:1px solid var(--ring);padding:20px 24px;color:var(--muted)}
     .note{font-size:12px;color:var(--muted)}
 
-    /* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
-
-/* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
-
-/* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+        /* Modal 樣式 */
+    .modal {
+      display:none; position:fixed; z-index:100; left:0; top:0;
+      width:100%; height:100%; background-color:rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background-color:var(--card);
+      margin:10% auto; padding:20px;
+      border:1px solid var(--ring); border-radius:10px;
+      max-width:500px; color:var(--text);
+    }
+    .modal-close {
+      float:right; font-size:20px; cursor:pointer;
+      color:var(--muted);
+    }
+    .modal-close:hover { color:var(--text); }
+  </style>
+</head>
+<body>
+  <!-- Modal -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalBody"></p>
+    </div>
+  </div>
 
 /* 手機版響應式補丁 */
 @media (max-width: 720px) {
@@ -459,10 +481,13 @@
 
       const [btnInfo, btnBuy] = node.querySelectorAll('.buy .btn');
       btnInfo.href = `#${item.genus}-${item.species}`;
-      btnInfo.addEventListener('click', e=>{
-        e.preventDefault();
-        alert(`${item.latin}（${item.cn}）\n\n重點：${item.info}`);
-      });
+     btnInfo.addEventListener('click', e=>{
+  e.preventDefault();
+  const modal = document.getElementById('speciesModal');
+  modal.querySelector('.modal-title').textContent = `${item.latin}（${item.cn}）`;
+  modal.querySelector('.modal-info').textContent = item.info;
+  modal.setAttribute('aria-hidden', 'false');
+});
       btnBuy.href = STORE_URL;
       btnBuy.setAttribute('aria-label', `${item.latin} 購買連結`);
       return node;
@@ -544,6 +569,11 @@
     }
 
     init();
+    document.addEventListener('click', e => {
+  if (e.target.matches('.modal-backdrop, .modal-close')) {
+    document.getElementById('speciesModal').setAttribute('aria-hidden', 'true');
+  }
+});
   </script>
 </body>
 </html>
