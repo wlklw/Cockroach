@@ -94,6 +94,11 @@
   cursor: pointer;
 }
 
+#modal-close:hover {
+  background: var(--panel);
+  color: var(--text);
+}
+    
 /* 手機版響應式補丁 */
 @media (max-width: 720px) {
   .grid {
@@ -380,6 +385,15 @@
 }
 </style>
 
+ <!-- Modal HTML 結構 -->
+  <div id="info-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+    <div id="info-modal-content">
+      <button id="modal-close" aria-label="關閉視窗">×</button>
+      <h3 id="modal-title" style="margin: 0 0 12px 0; color: var(--text);"></h3>
+      <p id="modal-info" style="margin: 0; color: var(--muted); line-height: 1.6;"></p>
+    </div>
+  </div>
+    
   <footer class="container">
     <div>© <span id="year"></span> BlattaLab. All rights reserved.</div>
   </footer>
