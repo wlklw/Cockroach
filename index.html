@@ -62,11 +62,37 @@
     footer{margin-top:40px;border-top:1px solid var(--ring);padding:20px 24px;color:var(--muted)}
     .note{font-size:12px;color:var(--muted)}
 
-    /* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+    /* modal CSS 放在這裡 */
+#info-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
 
-/* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+#info-modal-content {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
 
-/* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+#modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--muted);
+  cursor: pointer;
+}
 
 /* 手機版響應式補丁 */
 @media (max-width: 720px) {
@@ -568,7 +594,7 @@ modal.addEventListener('click', e=>{
   </script>
     
    <!-- Modal -->
-<div id="info-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;justify-content:center;align-items:center;">
+<div id="info-modal" modal.style.display = 'flex';position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;justify-content:center;align-items:center;">
   <div id="info-modal-content" style="background:var(--card);padding:24px;border-radius:16px;max-width:480px;width:90%;position:relative;box-shadow:0 8px 24px rgba(0,0,0,0.5);">
     <button id="modal-close" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer;">&times;</button>
     <h3 id="modal-title" style="margin-top:0;margin-bottom:12px;color:var(--brand);"></h3>
