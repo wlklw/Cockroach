@@ -64,42 +64,117 @@
 
     /* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
 
+/* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+
 /* 手機版響應式補丁 */
 @media (max-width: 720px) {
   .grid {
     grid-template-columns: 1fr !important; /* 手機版單欄 */
+    gap: 16px;
   }
   
   .card {
-    grid-column: span 1;
+    grid-column: span 1 !important;
+    margin: 0 8px; /* 左右留白 */
   }
   
   .thumb {
-    aspect-ratio: 3/2; /* 手機版較方正的圖片比例 */
+    aspect-ratio: 16/10; /* 保持原比例但限制高度 */
+    max-height: 200px; /* 限制最大高度 */
+    overflow: hidden;
   }
-}
-
-@media (max-width: 400px) {
-  .container {
-    padding: 16px;
+  
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .card-body {
+    padding: 12px !important;
+    gap: 6px !important;
   }
   
   .latin {
-    font-size: 14px;
+    font-size: 16px !important;
+    line-height: 1.3;
+  }
+  
+  .cn {
+    font-size: 14px !important;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+  
+  .meta {
+    gap: 6px !important;
+    margin: 8px 0 !important;
   }
   
   .tag {
-    font-size: 10px;
-    padding: 4px 6px;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+    line-height: 1.2;
   }
   
   .row {
-    font-size: 12px;
+    font-size: 13px !important;
+    gap: 8px !important;
+    margin: 4px 0;
+    flex-wrap: wrap;
+  }
+  
+  .stars svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  
+  .buy {
+    gap: 8px !important;
+    margin-top: 12px !important;
   }
   
   .btn {
-    font-size: 12px;
-    padding: 8px 10px;
+    font-size: 13px !important;
+    padding: 10px 8px !important;
+    border-radius: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px !important;
+  }
+  
+  .card {
+    margin: 0 4px !important;
+  }
+  
+  .thumb {
+    max-height: 180px !important;
+  }
+  
+  .latin {
+    font-size: 15px !important;
+  }
+  
+  .cn {
+    font-size: 13px !important;
+  }
+  
+  .tag {
+    font-size: 10px !important;
+    padding: 3px 6px !important;
+  }
+  
+  .row {
+    font-size: 12px !important;
+  }
+  
+  .btn {
+    font-size: 12px !important;
+    padding: 9px 6px !important;
   }
 }
   </style>
