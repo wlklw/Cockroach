@@ -61,6 +61,47 @@
 
     footer{margin-top:40px;border-top:1px solid var(--ring);padding:20px 24px;color:var(--muted)}
     .note{font-size:12px;color:var(--muted)}
+
+    /* 保持你原有的所有 CSS 不變，只在最後加上這段手機版補丁 */
+
+/* 手機版響應式補丁 */
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr !important; /* 手機版單欄 */
+  }
+  
+  .card {
+    grid-column: span 1;
+  }
+  
+  .thumb {
+    aspect-ratio: 3/2; /* 手機版較方正的圖片比例 */
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .latin {
+    font-size: 14px;
+  }
+  
+  .tag {
+    font-size: 10px;
+    padding: 4px 6px;
+  }
+  
+  .row {
+    font-size: 12px;
+  }
+  
+  .btn {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
   </style>
 <!-- 修改後的 HTML 結構 (在 header 部分) -->
 <header>
