@@ -461,11 +461,11 @@
       btnInfo.href = `#${item.genus}-${item.species}`;
       btnInfo.addEventListener('click', e=>{
   e.preventDefault();
-  const modal = document.getElementById('info-modal');
   document.getElementById('modal-title').textContent = `${item.latin}（${item.cn}）`;
   document.getElementById('modal-info').textContent = `重點：${item.info}`;
   modal.style.display = 'flex';
 });
+
 
       btnBuy.href = STORE_URL;
       btnBuy.setAttribute('aria-label', `${item.latin} 購買連結`);
@@ -549,21 +549,27 @@
 
     init();
     
-    document.getElementById('modal-close').addEventListener('click', ()=>{
-  document.getElementById('info-modal').style.display = 'none';
+ const modal = document.getElementById('info-modal');
+const modalContent = document.getElementById('info-modal-content');
+const modalClose = document.getElementById('modal-close');
+
+// 點 × 關閉
+modalClose.addEventListener('click', ()=>{
+  modal.style.display = 'none';
 });
 
-document.getElementById('info-modal').addEventListener('click', e=>{
-  if(e.target.id==='info-modal'){
-    e.target.style.display = 'none';
+// 點背景關閉
+modal.addEventListener('click', e=>{
+  if(!modalContent.contains(e.target)){
+    modal.style.display = 'none';
   }
 });
-
+    
   </script>
     
-    <!-- Modal 結構 -->
+   <!-- Modal -->
 <div id="info-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;justify-content:center;align-items:center;">
-  <div style="background:var(--card);padding:24px;border-radius:16px;max-width:480px;width:90%;position:relative;box-shadow:0 8px 24px rgba(0,0,0,0.5);">
+  <div id="info-modal-content" style="background:var(--card);padding:24px;border-radius:16px;max-width:480px;width:90%;position:relative;box-shadow:0 8px 24px rgba(0,0,0,0.5);">
     <button id="modal-close" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer;">&times;</button>
     <h3 id="modal-title" style="margin-top:0;margin-bottom:12px;color:var(--brand);"></h3>
     <p id="modal-info" style="color:var(--text);line-height:1.5;"></p>
