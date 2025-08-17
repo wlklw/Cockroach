@@ -1,12 +1,55 @@
-
 <!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BlattaLab｜蜚蠊介紹與販售</title>
-  <meta name="description" content="BlattaLab 專注於蜚蠊（Blattodea）的研究、繁育與教育推廣。提供科學化的物種資訊與飼養建議，並提供購買服務。" />
+  <title>BlattaLab｜蜚蠊介紹與販售 - 專業蟑螂寵物飼養指南</title>
+  <meta name="description" content="BlattaLab 專注於蜚蠊（Blattodea）的研究、繁育與教育推廣。提供科學化的物種資訊與飼養建議，並提供購買服務。問號蜚蠊、多米諾骨牌蜚蠊、瓷蠊等多種寵物蟑螂。" />
+  <meta name="keywords" content="蜚蠊, 蟑螂寵物, Blattodea, 問號蜚蠊, 多米諾骨牌蜚蠊, 瓷蠊, 寵物昆蟲, 昆蟲飼養, 爬蟲寵物" />
   <meta name="color-scheme" content="light dark" />
+  
+  <!-- Open Graph Meta Tags for Social Media -->
+  <meta property="og:title" content="BlattaLab｜蜚蠊介紹與販售 - 專業蟑螂寵物飼養指南" />
+  <meta property="og:description" content="專業蜚蠊研究與飼養指南，提供多種寵物蟑螂品種介紹與購買服務" />
+  <meta property="og:image" content="https://yourdomain.github.io/images/logo.png" />
+  <meta property="og:url" content="https://yourdomain.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BlattaLab" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BlattaLab｜蜚蠊介紹與販售" />
+  <meta name="twitter:description" content="專業蜚蠊研究與飼養指南" />
+  <meta name="twitter:image" content="https://yourdomain.github.io/images/logo.png" />
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "BlattaLab",
+    "description": "專注於蜚蠊研究、繁育與教育推廣的專業機構",
+    "url": "https://yourdomain.github.io/",
+    "logo": "https://yourdomain.github.io/images/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "bumbuseximius@gmail.com",
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://www.facebook.com/your-page",
+      "https://www.instagram.com/your-account"
+    ]
+  }
+  </script>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://yourdomain.github.io/" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="apple-touch-icon" href="images/logo.png" />
+
   <style>
     :root{
       --bg:#0e1012;--panel:#15181c;--muted:#9aa4af;--text:#e6ebf0;--brand:#21c48c;--brand-2:#15a17c;--ring:#2a343f;--card:#121418;--accent:#2b3947;
@@ -18,14 +61,104 @@
     header{position:sticky;top:0;z-index:30;background:rgba(18,20,24,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--ring)}
     .nav{display:flex;align-items:center;gap:16px;padding:12px 24px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .logo{width:32px;height:32px;border-radius:10px;background:conic-gradient(from 210deg at 50% 50%,#21c48c, #1b9a86, #15607a,#203241,#21c48c);display:grid;place-items:center;box-shadow:0 0 0 1px #2b3642 inset,0 10px 30px rgba(0,0,0,.35)}
-    .logo svg{width:22px;height:22px;fill:#0e1012}
+    .logo{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;overflow:hidden;box-shadow:0 3px 15px rgba(0,0,0,.4)}
+    .logo img{width:100%;height:100%;object-fit:cover;transition:transform 0.2s ease}
+    .logo:hover img{transform:scale(1.05)}
     .nav a{padding:8px 10px;border-radius:10px;color:var(--muted);text-decoration:none;transition:.2s}
     .nav a:hover{color:var(--text);background:var(--panel)}
 
     .hero{padding:56px 24px 8px}
     .hero h1{font-size:40px;margin:0 0 8px}
     .hero p{margin:0;color:var(--muted)}
+
+    /* 新增：社群媒體連結區塊 */
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+      align-items: center;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: var(--panel);
+      border: 1px solid var(--ring);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+    .social-link:hover {
+      background: var(--accent);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* 新增：快速導航區塊 */
+    .quick-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .quick-nav-item {
+      background: var(--panel);
+      border: 1px solid var(--ring);
+      border-radius: 12px;
+      padding: 16px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .quick-nav-item:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(33, 196, 140, 0.1);
+    }
+    .quick-nav-title {
+      font-weight: 600;
+      color: var(--brand);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .quick-nav-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* 新增：統計數據區塊 */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+      padding: 20px;
+      background: var(--panel);
+      border: 1px solid var(--ring);
+      border-radius: 14px;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--brand);
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
 
     .toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--ring);padding:12px;border-radius:14px;margin:18px 0}
     .toolbar input,.toolbar select{background:#0f1216;border:1px solid var(--ring);color:var(--text);padding:10px 12px;border-radius:10px;outline:none}
@@ -40,102 +173,62 @@
     @media (max-width:1000px){.grid{grid-template-columns:repeat(8,1fr)}}
     @media (max-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
 
-   .card {
-      background: linear-gradient(145deg, #121418, #0f1114);
-      border: 1px solid rgba(42, 52, 63, 0.8);
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      backdrop-filter: blur(10px);
-      box-shadow: 
-        0 4px 20px rgba(0, 0, 0, 0.15),
-        0 1px 3px rgba(0, 0, 0, 0.1);
+    .card{grid-column:span 4;background:var(--card);border:1px solid var(--ring);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+    .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#1a2732,#0e1620);display:grid;place-items:center;position:relative}
+    .thumb .ph{font-size:12px;color:var(--muted);border:1px dashed #334152;padding:8px 10px;border-radius:10px}
+    .card-body{padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px}
+    .latin{font-weight:700;font-style:italic}
+    .cn{color:var(--muted)}
+    .meta{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{font-size:12px;padding:6px 8px;border:1px solid var(--ring);border-radius:999px;color:var(--muted)}
+    .row{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:14px}
+    .stars{display:inline-flex;gap:2px;vertical-align:middle}
+    .stars svg{width:16px;height:16px}
+    .buy{margin-top:auto;display:flex;gap:8px}
+    .btn{flex:1;text-align:center;text-decoration:none;padding:10px 12px;border-radius:12px;border:1px solid #2e3b48;background:linear-gradient(180deg,#1a232d,#121820);color:#d5dee7;font-weight:600}
+    .btn:hover{border-color:#3a4958}
+    .btn.primary{background:linear-gradient(180deg,#23c48c,#1aa67e);border-color:#25b588;color:#07110e}
+
+    .btn.out-of-stock {
+      background: linear-gradient(180deg, #4a4a4a, #3a3a3a);
+      border-color: #555;
+      color: #888;
+      cursor: not-allowed;
+      opacity: 0.6;
     }
 
-    .card::before {
-      content: '';
+    .btn.out-of-stock:hover {
+      background: linear-gradient(180deg, #4a4a4a, #3a3a3a);
+      border-color: #555;
+      color: #888;
+      transform: none;
+    }
+
+    .stock-badge {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(33, 196, 140, 0.3), 
-        transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(33, 196, 140, 0.4);
-      box-shadow: 
-        0 12px 40px rgba(33, 196, 140, 0.12),
-        0 4px 20px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-/* 新增：缺貨按鈕樣式 */
-.btn.out-of-stock {
-  background: linear-gradient(180deg, #4a4a4a, #3a3a3a);
-  border-color: #555;
-  color: #888;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.btn.out-of-stock:hover {
-  background: linear-gradient(180deg, #4a4a4a, #3a3a3a);
-  border-color: #555;
-  color: #888;
-  transform: none;
-}
-
-/* 庫存狀態標籤 */
-.stock-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
+      top: 8px;
+      right: 8px;
       padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
+      border-radius: 12px;
+      font-size: 14px;
       font-weight: 600;
       z-index: 10;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
     }
 
     .stock-badge.in-stock {
       background: rgba(33, 196, 140, 0.9);
-      color: #0a1f17;
-      box-shadow: 0 4px 12px rgba(33, 196, 140, 0.3);
+      color: #07110e;
     }
 
     .stock-badge.low-stock {
       background: rgba(255, 193, 7, 0.9);
       color: #2d1a00;
-      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
     }
 
     .stock-badge.out-of-stock {
       background: rgba(220, 53, 69, 0.9);
       color: #fff;
-      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
     }
-
-.thumb {
-  position: relative; /* 為了放置庫存標籤 */
-}
     
     .section-title{display:flex;justify-content:space-between;align-items:center;margin:24px 0 8px}
     .section-title h2{margin:0;font-size:20px;color:#dce6ef}
@@ -144,7 +237,6 @@
     footer{margin-top:40px;border-top:1px solid var(--ring);padding:20px 24px;color:var(--muted)}
     .note{font-size:12px;color:var(--muted)}
 
-    /* Modal 彈窗樣式 */
     .modal {
       display: none;
       position: fixed;
@@ -292,86 +384,54 @@
     /* 手機版響應式補丁 */
     @media (max-width: 720px) {
       .grid {
-        grid-template-columns: 1fr !important; /* 手機版單欄 */
+        grid-template-columns: 1fr !important;
         gap: 16px;
       }
       
       .card {
         grid-column: span 1 !important;
-        margin: 0 8px; /* 左右留白 */
-        overflow: hidden; /* 確保圖片不會超出卡片 */
-      }
-      
-      .thumb {
-        aspect-ratio: 16/10; /* 保持原比例但限制高度 */
-        max-height: 200px; /* 限制最大高度 */
+        margin: 0 8px;
         overflow: hidden;
-        width: 100%; /* 確保填滿整個寬度 */
-        margin: 0 !important; /* 移除任何邊距 */
-        padding: 0 !important; /* 移除任何內距 */
-        border-radius: 0; /* 移除圖片區域的圓角 */
-        background: none !important; /* 移除預設背景 */
-        display: block !important; /* 改為 block 而非 grid */
       }
       
       .thumb {
-      aspect-ratio: 16/10;
-      background: linear-gradient(135deg, #1a2732, #0e1620);
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .thumb::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 40%;
-      background: linear-gradient(to top, 
-        rgba(18, 20, 24, 0.6), 
-        transparent);
-      pointer-events: none;
-    }
-
-    .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .card:hover .thumb img {
-      transform: scale(1.05);
-    }
-
+        aspect-ratio: 16/10;
+        max-height: 200px;
+        overflow: hidden;
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0;
+        background: none !important;
+        display: block !important;
+      }
+      
+      .thumb img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+      }
       
       .card-body {
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex-grow: 1;
-    }
+        padding: 12px !important;
+        gap: 6px !important;
+      }
       
       .latin {
-      font-weight: 700;
-      font-style: italic;
-      font-size: 16px;
-      background: linear-gradient(135deg, var(--text), var(--brand));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 2px;
-    }
+        font-size: 16px !important;
+        line-height: 1.3;
+      }
       
       .cn {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
+        font-size: 14px !important;
+        line-height: 1.3;
+        margin-top: 2px;
+      }
       
       .meta {
         gap: 6px !important;
@@ -385,226 +445,28 @@
       }
       
       .row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 13px;
-      padding: 4px 0;
-      border-radius: 8px;
-      transition: color 0.2s ease;
-    }
-
-      .card:hover .row {
-      color: rgba(154, 164, 175, 0.9);
-    }
+        font-size: 13px !important;
+        gap: 8px !important;
+        margin: 4px 0;
+        flex-wrap: wrap;
+      }
       
-      .stars {
-      display: inline-flex;
-      gap: 2px;
-      vertical-align: middle;
-    }
-
-    .stars svg {
-      width: 14px;
-      height: 14px;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover .stars svg {
-      transform: scale(1.1);
-    }
+      .stars svg {
+        width: 14px !important;
+        height: 14px !important;
+      }
       
       .buy {
         gap: 8px !important;
         margin-top: 12px !important;
       }
       
-      .buy {
-      margin-top: auto;
-      display: flex;
-      gap: 10px;
-      padding-top: 8px;
-    }
-
-    .btn {
-      flex: 1;
-      text-align: center;
-      text-decoration: none;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.1), 
-        transparent);
-      transition: left 0.5s ease;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-       /* 普通按鈕 */
-    .btn:not(.primary):not(.out-of-stock) {
-      background: linear-gradient(145deg, #1a232d, #121820);
-      border-color: #2e3b48;
-      color: #d5dee7;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .btn:not(.primary):not(.out-of-stock):hover {
-      transform: translateY(-2px);
-      border-color: #3a4958;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-      background: linear-gradient(145deg, #1e2730, #161c24);
-    }
-
-    /* 主要按鈕 */
-    .btn.primary {
-      background: linear-gradient(145deg, #23c48c, #1aa67e);
-      border-color: #25b588;
-      color: #0a1f17;
-      box-shadow: 0 4px 16px rgba(33, 196, 140, 0.25);
-    }
-
-    .btn.primary:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(145deg, #26d199, #1db389);
-      box-shadow: 0 6px 24px rgba(33, 196, 140, 0.4);
-    }
-
-    /* 缺貨按鈕 */
-    .btn.out-of-stock {
-      background: linear-gradient(145deg, #4a4a4a, #3a3a3a);
-      border-color: #555;
-      color: #888;
-      cursor: not-allowed;
-      opacity: 0.7;
-    }
-
-    .btn.out-of-stock:hover {
-      transform: none;
-      background: linear-gradient(145deg, #4a4a4a, #3a3a3a);
-    }
-
-       /* 🌟 載入動畫 */
-    .loading {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(33, 196, 140, 0.2);
-      border-radius: 50%;
-      border-top-color: var(--brand);
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* 🔄 脈動動畫 */
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-
-    .pulse {
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    /* 📱 響應式優化 */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-      padding: 20px 0;
-    }
-
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 16px 8px;
-      }
-      
-      .card {
-        margin: 0 4px;
-      }
-
-      .card:hover {
-        transform: translateY(-3px);
-      }
-      
-      .stock-badge {
-        top: 8px;
-        right: 8px;
-        padding: 4px 8px;
-        font-size: 11px;
-      }
-      
       .btn {
-        padding: 10px 12px;
-        font-size: 12px;
+        font-size: 13px !important;
+        padding: 10px 8px !important;
+        border-radius: 10px !important;
       }
-    }
 
-       /* 🌈 微妙的彩虹邊框效果 */
-    .card.featured {
-      background: linear-gradient(145deg, #141719, #11141a);
-      border: 1px solid transparent;
-      background-image: linear-gradient(145deg, #141719, #11141a),
-                        linear-gradient(45deg, 
-                          var(--brand), 
-                          #e74c3c, 
-                          #f39c12, 
-                          var(--brand));
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-    }
-
-    /* 💫 閃光效果 */
-    .shine {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .shine::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent);
-      animation: shine 3s ease-in-out infinite;
-    }
-
-       @keyframes shine {
-      0% { left: -100%; }
-      50% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-      /* Modal 手機版調整 */
       .modal-content {
         width: 95%;
         margin: 20px;
@@ -633,6 +495,19 @@
 
       .info-value {
         font-size: 13px;
+      }
+
+      .quick-nav {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .social-links {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
 
@@ -670,32 +545,15 @@
         font-size: 12px !important;
         padding: 9px 6px !important;
       }
-    }
 
-    /* 修改後的 .logo 樣式 */
-    .logo {
-      width: 64px;
-      height: 64px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      box-shadow: 0 3px 15px rgba(0,0,0,.4);
-    }
-
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.2s ease;
-    }
-
-    .logo:hover img {
-      transform: scale(1.05);
+      .stats {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
+</head>
 
-<!-- 修改後的 HTML 結構 (在 header 部分) -->
+<body>
 <header>
   <div class="nav container">
     <div class="brand" aria-label="BlattaLab 標誌">
@@ -717,6 +575,68 @@
     <section class="hero" aria-labelledby="hero-title">
       <h1 id="hero-title">蜚蠊的科學與美學</h1>
       <p>從 Blattodea 到 Lab —— 以研究級資料與設計，呈現蜚蠊的生態價值與飼養知識。</p>
+      
+      <!-- 新增：社群媒體連結 -->
+      <div class="social-links">
+        <a href="https://www.facebook.com/your-page" class="social-link" target="_blank" rel="noopener">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Facebook 粉絲專頁
+        </a>
+        <a href="https://www.instagram.com/your-account" class="social-link" target="_blank" rel="noopener">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="mailto:bumbuseximius@gmail.com" class="social-link">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          聯絡我們
+        </a>
+      </div>
+
+      <!-- 新增：統計數據 -->
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-number" id="species-count">0</span>
+          <div class="stat-label">物種數量</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="genus-count">0</span>
+          <div class="stat-label">屬別種類</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="in-stock-count">0</span>
+          <div class="stat-label">現貨品種</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">專業</span>
+          <div class="stat-label">科學標準</div>
+        </div>
+      </div>
+
+      <!-- 新增：快速導航 -->
+      <div class="quick-nav">
+        <a href="#genus" class="quick-nav-item">
+          <div class="quick-nav-title">🔍 瀏覽物種</div>
+          <div class="quick-nav-desc">探索各種蜚蠊品種，從新手友善到進階挑戰</div>
+        </a>
+        <a href="#guide" class="quick-nav-item">
+          <div class="quick-nav-title">⭐ 難度指南</div>
+          <div class="quick-nav-desc">了解飼養難度星級，選擇適合的入門物種</div>
+        </a>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2508133179359" class="quick-nav-item" target="_blank">
+          <div class="quick-nav-title">🛒 購買服務</div>
+          <div class="quick-nav-desc">安全便利的7-11取貨服務，品質保證</div>
+        </a>
+        <a href="#about" class="quick-nav-item">
+          <div class="quick-nav-title">📚 專業知識</div>
+          <div class="quick-nav-desc">科學化的飼養指南與生態知識分享</div>
+        </a>
+      </div>
     </section>
 
     <section class="toolbar" aria-label="篩選工具">
@@ -749,13 +669,49 @@
     </section>
 
     <section id="guide" class="container" style="margin-top:28px">
-      <div class="section-title"><h2 style="font-size: 28px;">難度星級</h2></div>
-      <ul style="margin:0;padding-left:24px;color:var(--muted)">
-        <li style="font-size:20px">除了飼養難度外也參考繁殖難易度做綜合評估。</li>
-        <li style="font-size:20px">難度星級，1-2顆星適合入門新手嘗試。</li>
-        <li style="font-size:20px">難度星級，3-4顆星適合飼養過一些物種，了解濕度和通風後嘗試。</li>
-        <li style="font-size:20px">難度星級，5顆星在繁殖上有困難或是繁殖速率極慢</li>
-      </ul>
+      <div class="section-title"><h2 style="font-size: 28px;">難度星級指南</h2></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+        <div style="background: var(--panel); padding: 20px; border-radius: 14px; border: 1px solid var(--ring);">
+          <h3 style="color: var(--brand); margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 20px;">★☆☆☆☆ - ★★☆☆☆</span>
+            <span style="background: rgba(33, 196, 140, 0.2); color: var(--brand); padding: 4px 8px; border-radius: 6px; font-size: 12px;">新手推薦</span>
+          </h3>
+          <p style="color: var(--muted); margin: 0; line-height: 1.5;">
+            適合首次飼養蜚蠊的新手。環境適應性強，對溫濕度要求較寬鬆，繁殖容易，錯誤容忍度高。
+          </p>
+        </div>
+        
+        <div style="background: var(--panel); padding: 20px; border-radius: 14px; border: 1px solid var(--ring);">
+          <h3 style="color: #f3c96a; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 20px;">★★★☆☆ - ★★★★☆</span>
+            <span style="background: rgba(243, 201, 106, 0.2); color: #f3c96a; padding: 4px 8px; border-radius: 6px; font-size: 12px;">進階</span>
+          </h3>
+          <p style="color: var(--muted); margin: 0; line-height: 1.5;">
+            需要一定飼養經驗。對濕度控制和通風要求較高，需要更細心的環境管理和定期觀察。
+          </p>
+        </div>
+        
+        <div style="background: var(--panel); padding: 20px; border-radius: 14px; border: 1px solid var(--ring);">
+          <h3 style="color: #dc3545; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 20px;">★★★★★</span>
+            <span style="background: rgba(220, 53, 69, 0.2); color: #dc3545; padding: 4px 8px; border-radius: 6px; font-size: 12px;">專家級</span>
+          </h3>
+          <p style="color: var(--muted); margin: 0; line-height: 1.5;">
+            繁殖困難或週期極長的品種。需要特殊環境條件、專業知識和長期耐心，適合有豐富經驗的愛好者。
+          </p>
+        </div>
+      </div>
+      
+      <div style="background: var(--card); padding: 20px; border-radius: 14px; border: 1px solid var(--ring); margin-top: 20px;">
+        <h3 style="color: var(--brand); margin: 0 0 12px 0;">評估標準</h3>
+        <ul style="color: var(--muted); line-height: 1.6; margin: 0; padding-left: 20px;">
+          <li>環境適應性：對溫度、濕度變化的容忍度</li>
+          <li>繁殖難易度：交配成功率與後代存活率</li>
+          <li>食性特殊性：是否需要特殊食物或營養補充</li>
+          <li>生命週期：成長速度與世代更替頻率</li>
+          <li>照護複雜度：日常管理的時間和技術要求</li>
+        </ul>
+      </div>
     </section>
 
     <!-- 修改後的 About 區段 -->
@@ -789,44 +745,79 @@
           結合科學研究的態度與實驗室的標準，BlattaLab 不僅是蜚蠊愛好者的知識寶庫，更是連接學術研究與大眾教育的橋樑。每一個物種資訊都經過仔細驗證，每一份飼養建議都源於實際經驗。
         </p>
       </div>
+      
+      <!-- 新增：服務特色 -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px;">
+        <div style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
+          <h4 style="margin: 0 0 6px 0; color: var(--brand); font-size: 13px;">🔬 科學標準</h4>
+          <p style="margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4;">
+            研究級資料收集與驗證
+          </p>
+        </div>
+        <div style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
+          <h4 style="margin: 0 0 6px 0; color: var(--brand); font-size: 13px;">📦 安全配送</h4>
+          <p style="margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4;">
+            7-11 店到店，保證品質
+          </p>
+        </div>
+        <div style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
+          <h4 style="margin: 0 0 6px 0; color: var(--brand); font-size: 13px;">🎓 教育推廣</h4>
+          <p style="margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4;">
+            專業飼養知識分享
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 新增：常見問題 FAQ -->
+  <div style="margin-top: 32px;">
+    <h3 style="color: var(--text); margin-bottom: 16px;">常見問題 FAQ</h3>
+    <div style="display: grid; gap: 12px;">
+      <details style="background: var(--panel); border: 1px solid var(--ring); border-radius: 12px; padding: 16px;">
+        <summary style="color: var(--brand); cursor: pointer; font-weight: 600; margin-bottom: 8px;">
+          新手應該選擇什麼品種？
+        </summary>
+        <p style="color: var(--muted); margin: 0; line-height: 1.5;">
+          推薦從 1-2 星難度開始，如多米諾骨牌蜚蠊或卡佛爾瓷蠊。這些品種適應性強，對環境要求較寬鬆，適合累積飼養經驗。
+        </p>
+      </details>
+      
+      <details style="background: var(--panel); border: 1px solid var(--ring); border-radius: 12px; padding: 16px;">
+        <summary style="color: var(--brand); cursor: pointer; font-weight: 600; margin-bottom: 8px;">
+          如何控制濕度？
+        </summary>
+        <p style="color: var(--muted); margin: 0; line-height: 1.5;">
+          建議使用濕度計監控，並提供乾濕分明的環境。可透過水盤、濕潤底材一側來創造濕度梯度，避免整體過濕導致黴菌問題。
+        </p>
+      </details>
+      
+      <details style="background: var(--panel); border: 1px solid var(--ring); border-radius: 12px; padding: 16px;">
+        <summary style="color: var(--brand); cursor: pointer; font-weight: 600; margin-bottom: 8px;">
+          餵食頻率如何安排？
+        </summary>
+        <p style="color: var(--muted); margin: 0; line-height: 1.5;">
+          成蟲每週 2-3 次，幼蟲可以每日餵食。以高蛋白犬貓飼料為主食，搭配新鮮蔬果。避免食物腐敗，及時清理剩餘食物。
+        </p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- 響應式調整 CSS -->
-<style>
-/* 響應式設計：小螢幕時改為垂直排列 */
-@media (max-width: 768px) {
-  .about-content {
-    flex-direction: column !important;
-    text-align: center;
-  }
-  
-  .about-logo {
-    align-self: center;
-  }
-  
-  .about-logo img {
-    width: 64px !important;
-    height: 64px !important;
-  }
-}
-
-/* Logo hover 效果 */
-.about-logo img {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-logo img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 32px rgba(33, 196, 140, 0.25);
-}
-</style>
-
   </main>
 
   <footer class="container">
-    <div>© <span id="year"></span> BlattaLab. All rights reserved.</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>© <span id="year"></span> BlattaLab. All rights reserved.</div>
+      <div style="display: flex; gap: 16px; font-size: 14px;">
+        <a href="mailto:bumbuseximius@gmail.com" style="color: var(--muted); text-decoration: none;">聯絡我們</a>
+        <a href="#guide" style="color: var(--muted); text-decoration: none;">飼養指南</a>
+        <a href="#about" style="color: var(--muted); text-decoration: none;">關於我們</a>
+      </div>
+    </div>
+    <div class="note" style="margin-top: 16px; text-align: center;">
+      本站提供之物種資訊僅供參考，實際飼養前請詳細了解相關法規與生態責任
+    </div>
   </footer>
 
   <!-- Modal 彈窗 -->
@@ -871,22 +862,22 @@
 
     const DATA = [
       // 鼈蠊屬
-      {genus:"Therea", species:"olegrandjeani", latin:"Therea olegrandjeani", cn:"問號蜚蠊", stock: "out-of-stock", features:"黑底翅面中央白色問號狀斑紋", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月", diet:"高蛋白犬/貓/雞飼料，幼蟲取食落葉，但不是必要條件", temp:"24–30°C；60–80%（需乾濕分明）", diff:2, tags:["現貨","新手+"], info:"需提供濕度梯度以避免脫皮不良", img:"/Cockroach/images/IMG20181211214008.jpg"},
-      {genus:"Therea", species:"bernhardti", latin:"Therea bernhardti", cn:"多米諾骨牌蜚蠊", stock: "in-stock", features:"黑底白圓斑，似骨牌", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月。", diet:"高蛋白犬/貓/雞飼料，幼蟲取食落葉，但不是必要條件", temp:"24–30°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"適應性強，對環境要求低", img:"/Cockroach/images/IMG_9342.JPG"},
-      {genus:"Therea", species:"regularis", latin:"Therea regularis", cn:"多米諾橘骨牌蜚蠊", stock: "in-stock",  features:"黑底搭配橘白斑，對比強烈", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月", diet:"高蛋白犬/貓/雞飼料，幼蟲取食落葉，但不是必要條件", temp:"24–30°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"容錯率高，新手適合", img:"/Cockroach/images/IMG_9157.JPG"},
-      {genus:"Therea", species:"cf_irreperta", latin:"Therea cf. irreperta", cn:"Therea cf. irreperta", stock: "out-of-stock",  features:"黑底對稱橘斑，與橘骨牌相似", origin:"印度", habit:" 屬於地棲性物種，日間潛伏於底材中，夜間才會出來活動 。此物種在同屬中較為特殊，因為雌雄兩性皆具備相對較長的翅膀，且有飛行能力", diet:"高蛋白犬/貓/雞飼料，幼蟲會取食落葉，但不是必要條件", temp:"24–30°C；需乾濕交界區", diff:2, tags:["缺貨"], info:"底材濕度控制重要", img:"/Cockroach/images/IMG_9483.jpeg"},
+      {genus:"Therea", species:"olegrandjeani", latin:"Therea olegrandjeani", cn:"問號蜚蠊", stock: "out-of-stock", features:"黑底翅面中央白色問號狀斑紋", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月", diet:"高蛋白犬/貓/雞飼料，幼蟲取食落葉，但不是必要條件", temp:"24–30°C；60–80%（需乾濕分明）", diff:2, tags:["缺貨","新手+"], info:"需提供濕度梯度以避免脫皮不良", img:"images/IMG20181211214008.jpg"},
+      {genus:"Therea", species:"bernhardti", latin:"Therea bernhardti", cn:"多米諾骨牌蜚蠊", stock: "in-stock", features:"黑底白圓斑，似骨牌", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月。", diet:"高蛋白犬/貓/雞飼料，幼蟲取食落葉，但不是必要條件", temp:"24–30°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"適應性強，對環境要求低", img:"images/IMG_9342.JPG"},
+      {genus:"Therea", species:"regularis", latin:"Therea regularis", cn:"多米諾橘骨牌蜚蠊", stock: "in-stock",  features:"黑底搭配橘白斑，對比強烈", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月", diet:"高蛋白犬/貓/雞飼料，幼蟲取食落葉，但不是必要條件", temp:"24–30°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"容錯率高，新手適合", img:"images/IMG_9157.JPG"},
+      {genus:"Therea", species:"cf_irreperta", latin:"Therea cf. irreperta", cn:"Therea cf. irreperta", stock: "out-of-stock",  features:"黑底對稱橘斑，與橘骨牌相似", origin:"印度", habit:" 屬於地棲性物種，日間潛伏於底材中，夜間才會出來活動 。此物種在同屬中較為特殊，因為雌雄兩性皆具備相對較長的翅膀，且有飛行能力", diet:"高蛋白犬/貓/雞飼料，幼蟲會取食落葉，但不是必要條件", temp:"24–30°C；需乾濕交界區", diff:2, tags:["缺貨"], info:"底材濕度控制重要", img:"images/IMG_9483.jpeg"},
 
       // 瓷蠊屬
-      {genus:"Gyna", species:"caffrorum", latin:"Gyna caffrorum", cn:"卡佛爾瓷蠊", stock: "in-stock",  features:"淡米至淺棕翅，細緻斑紋", origin:"南非", habit:"成蟲具備攀爬光滑表面和飛行的能力，但牠們更喜歡將時間花在底材下，幼蟲則完全無法攀爬光滑表面", diet:"雜食性，高蛋白飼料、蔬果、落葉", temp:"24–28°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"生命週期穩定、適應力佳", img:"/Cockroach/images/Snapseed.jpg"},
-      {genus:"Gyna", species:"centurio", latin:"Gyna centurio", cn:"百夫長瓷蠊", stock: "in-stock",  features:"雌雄二型明顯，雄米白、雌深褐斑為主", origin:"非洲中部", habit:"成蟲同樣具備攀爬光滑表面和飛行的能力，但相較於卡佛爾瓷蠊，本種速度較慢", diet:"雜食性，高蛋白飼料、蔬果、落葉", temp:"24–28°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"繁殖容易，環境要求低", img:"/Cockroach/images/IMG_7931.JPG"},
+      {genus:"Gyna", species:"caffrorum", latin:"Gyna caffrorum", cn:"卡佛爾瓷蠊", stock: "in-stock",  features:"淡米至淺棕翅，細緻斑紋", origin:"南非", habit:"成蟲具備攀爬光滑表面和飛行的能力，但牠們更喜歡將時間花在底材下，幼蟲則完全無法攀爬光滑表面", diet:"雜食性，高蛋白飼料、蔬果、落葉", temp:"24–28°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"生命週期穩定、適應力佳", img:"images/Snapseed.jpg"},
+      {genus:"Gyna", species:"centurio", latin:"Gyna centurio", cn:"百夫長瓷蠊", stock: "in-stock",  features:"雌雄二型明顯，雄米白、雌深褐斑為主", origin:"非洲中部", habit:"成蟲同樣具備攀爬光滑表面和飛行的能力，但相較於卡佛爾瓷蠊，本種速度較慢", diet:"雜食性，高蛋白飼料、蔬果、落葉", temp:"24–28°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"繁殖容易，環境要求低", img:"images/IMG_7931.JPG"},
 
       // 馬島群
-      {genus:"Princisia", species:"vanwaerebeki", latin:"Princisia vanwaerebeki", cn:"巨人馬島蜚蠊", stock: "out-of-stock",  features:"大型黑至深棕，空間足可達8公分", origin:"馬達加斯加", habit:"雄性頭胸背板有誇張的突起，類似三角龍的頭飾，用於在競爭中推擠其他雄性以確立交配權，為卵胎生，雌性會在體內孵化卵鞘後產下活體幼蟲", diet:"廣泛雜食，蔬果、高蛋白飼料、肉類等 ", temp:"27°C 以上；70–80% 高濕且通風佳", diff:3, tags:["缺貨"], info:"需保持濕度與通風平衡及大空間", img:"/Cockroach/images/IMG_9453.JPG"},
-      {genus:"Elliptorhina", species:"chopardi", latin:"Elliptorhina chopardi", cn:"侏儒馬島蜚蠊", stock: "out-of-stock",  features:"最小馬島，<4 公分，橙褐與黑相間", origin:"馬達加斯加", habit:"為卵胎生，雌性會在體內孵化卵鞘後產下活體幼蟲", diet:"廣泛雜食，蔬果、高蛋白飼料、肉類等 ", temp:"24–28°C；70–80%", diff:2, tags:["缺貨"], info:"需穩定濕度與通風", img:"/Cockroach/images/IMG_7399.JPG"},
-      {genus:"Aeluropoda", species:"insignis", latin:"Aeluropoda insignis", cn:"紅平板馬島蜚蠊", stock: "out-of-stock",  features:"紅褐色平板狀、扁平化", origin:"馬達加斯加", habit:"其極度扁平的體型使其能夠有效地藏匿於狹窄的縫隙中，為卵胎生，雌性會在體內孵化卵鞘後產下活體幼蟲", diet:"雜食性，偏好蔬果，亦取食高蛋白飼料 ", temp:"24–28°C；65–75%", diff:2, tags:["缺貨"], info:"需穩定濕度與隱蔽空間", img:"/Cockroach/images/IMG_9450.JPG"},
+      {genus:"Princisia", species:"vanwaerebeki", latin:"Princisia vanwaerebeki", cn:"巨人馬島蜚蠊", stock: "out-of-stock",  features:"大型黑至深棕，空間足可達8公分", origin:"馬達加斯加", habit:"雄性頭胸背板有誇張的突起，類似三角龍的頭飾，用於在競爭中推擠其他雄性以確立交配權，為卵胎生，雌性會在體內孵化卵鞘後產下活體幼蟲", diet:"廣泛雜食，蔬果、高蛋白飼料、肉類等 ", temp:"27°C 以上；70–80% 高濕且通風佳", diff:3, tags:["缺貨"], info:"需保持濕度與通風平衡及大空間", img:"images/IMG_9453.JPG"},
+      {genus:"Elliptorhina", species:"chopardi", latin:"Elliptorhina chopardi", cn:"侏儒馬島蜚蠊", stock: "out-of-stock",  features:"最小馬島，<4 公分，橙褐與黑相間", origin:"馬達加斯加", habit:"為卵胎生，雌性會在體內孵化卵鞘後產下活體幼蟲", diet:"廣泛雜食，蔬果、高蛋白飼料、肉類等 ", temp:"24–28°C；70–80%", diff:2, tags:["缺貨"], info:"需穩定濕度與通風", img:"images/IMG_7399.JPG"},
+      {genus:"Aeluropoda", species:"insignis", latin:"Aeluropoda insignis", cn:"紅平板馬島蜚蠊", stock: "out-of-stock",  features:"紅褐色平板狀、扁平化", origin:"馬達加斯加", habit:"其極度扁平的體型使其能夠有效地藏匿於狹窄的縫隙中，為卵胎生，雌性會在體內孵化卵鞘後產下活體幼蟲", diet:"雜食性，偏好蔬果，亦取食高蛋白飼料 ", temp:"24–28°C；65–75%", diff:2, tags:["缺貨"], info:"需穩定濕度與隱蔽空間", img:"images/IMG_9450.JPG"},
 
       // 金屬蠊屬
-      {genus:"Pseudoglomeris", species:"magnifica", latin:"Pseudoglomeris magnifica", cn:"越南金屬蜚蠊", stock: "out-of-stock",  features:"金綠金屬光澤，極為華麗", origin:"越南 Cuc Phuong（產地型）", habit:"罕見的日行性蜚蠊，在白天會活躍地四處探索和覓食。為樹棲性物種，能夠攀爬光滑的表面，成年雄性有翅膀，能夠飛行，而雌性則無翅", diet:"食花粉性，花粉、水果、昆蟲果凍、高蛋白飼料", temp:"24–27°C；50-70%（需通風）", diff:4, tags:["缺貨"], info:"需花粉與新鮮蔬果補充", img:"/Cockroach/images/IMG_7950.JPG"},
+      {genus:"Pseudoglomeris", species:"magnifica", latin:"Pseudoglomeris magnifica", cn:"越南金屬蜚蠊", stock: "out-of-stock",  features:"金綠金屬光澤，極為華麗", origin:"越南 Cuc Phuong（產地型）", habit:"罕見的日行性蜚蠊，在白天會活躍地四處探索和覓食。為樹棲性物種，能夠攀爬光滑的表面，成年雄性有翅膀，能夠飛行，而雌性則無翅", diet:"食花粉性，花粉、水果、昆蟲果凍、高蛋白飼料", temp:"24–27°C；50-70%（需通風）", diff:4, tags:["缺貨"], info:"需花粉與新鮮蔬果補充", img:"images/IMG_7950.JPG"},
 
       // 紺蠊屬
       {genus:"Eucorydia", species:"dasytoides", latin:"Eucorydia dasytoides", cn:"帶紋绀蠊", stock: "out-of-stock", features:"亮藍金屬色翼帶黃條", origin:"東南亞（含臺灣部分）", habit:"成年雄性飛行能力佳，具有訪花行為，但壽命較短。雌蟲和若蟲多躲藏於樹皮裂縫或腐木之中", diet:"成蟲食花粉性，取食花粉、水果；幼蟲雜食", temp:"24–27°C；70–80%", diff:3, tags:["缺貨"], info:"生命週期長，成蟲期短；雄蟲需供應花粉", img:"images/IMG_7960.JPG"},
@@ -919,23 +910,23 @@
       return `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="${fill? '#f3c96a':'#3a4653'}" d="M12 17.3l-6.1 3.6 1.6-6.9L2 8.9l7-.6L12 1.9l3 6.4 7 .6-5.5 5.1 1.6 6.9z"/></svg>`
     }
 
-// 獲取庫存狀態顯示文字
-function getStockText(stock, count) {
-  switch(stock) {
-    case 'in-stock': return '現貨充足';
-    case 'low-stock': return `僅剩 ${count} 隻`;
-    case 'out-of-stock': return '缺貨中';
-    default: return '現貨充足';
-  }
-}
+    // 獲取庫存狀態顯示文字
+    function getStockText(stock, count) {
+      switch(stock) {
+        case 'in-stock': return '現貨充足';
+        case 'low-stock': return `僅剩 ${count} 隻`;
+        case 'out-of-stock': return '缺貨中';
+        default: return '現貨充足';
+      }
+    }
 
-// 獲取購買按鈕文字
-function getBuyButtonText(stock) {
-  switch(stock) {
-    case 'out-of-stock': return '缺貨中';
-    default: return '購買連結';
-  }
-}
+    // 獲取購買按鈕文字
+    function getBuyButtonText(stock) {
+      switch(stock) {
+        case 'out-of-stock': return '缺貨中';
+        default: return '購買連結';
+      }
+    }
     
     function showModal(item) {
       $modalTitle.textContent = item.latin;
@@ -1044,10 +1035,10 @@ function getBuyButtonText(stock) {
 
         thumb.innerHTML = '';
         thumb.appendChild(img);
-          const stockBadge = document.createElement('div');
-  stockBadge.className = `stock-badge ${item.stock}`;
-  stockBadge.textContent = getStockText(item.stock, item.stockCount);
-  thumb.appendChild(stockBadge);
+        const stockBadge = document.createElement('div');
+        stockBadge.className = `stock-badge ${item.stock}`;
+        stockBadge.textContent = getStockText(item.stock, item.stockCount);
+        thumb.appendChild(stockBadge);
       }
       
       node.querySelector('.latin').textContent = `${item.latin}`;
@@ -1067,26 +1058,26 @@ function getBuyButtonText(stock) {
         showModal(item); // 使用新的 Modal 函數
       });
       // 修改購買按鈕邏輯
-btnBuy.textContent = getBuyButtonText(item.stock);
+      btnBuy.textContent = getBuyButtonText(item.stock);
 
-if (item.stock === 'out-of-stock') {
-  // 缺貨狀態
-  btnBuy.className = 'btn out-of-stock';
-  btnBuy.href = '#';
-  btnBuy.setAttribute('aria-disabled', 'true');
-  btnBuy.setAttribute('aria-label', `${item.latin} 目前缺貨中`);
-  btnBuy.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('此商品目前缺貨中，請稍後再試或聯繫我們了解補貨時間');
-  });
-} else {
-  // 有庫存狀態
-  btnBuy.className = 'btn primary';
-  btnBuy.href = STORE_URL;
-  btnBuy.setAttribute('aria-label', `${item.latin} 購買連結`);
-}
+      if (item.stock === 'out-of-stock') {
+        // 缺貨狀態
+        btnBuy.className = 'btn out-of-stock';
+        btnBuy.href = '#';
+        btnBuy.setAttribute('aria-disabled', 'true');
+        btnBuy.setAttribute('aria-label', `${item.latin} 目前缺貨中`);
+        btnBuy.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('此商品目前缺貨中，請稍後再試或聯繫我們了解補貨時間');
+        });
+      } else {
+        // 有庫存狀態
+        btnBuy.className = 'btn primary';
+        btnBuy.href = STORE_URL;
+        btnBuy.setAttribute('aria-label', `${item.latin} 購買連結`);
+      }
 
-return node;
+      return node;
     }
 
     function render(genusFilter, query, diffFilter, tagSet){
@@ -1119,6 +1110,17 @@ return node;
         b.className='tab'; b.role='tab'; b.dataset.genus=g; b.textContent=g;
         $tabs.appendChild(b);
       });
+    }
+
+    function updateStats() {
+      // 更新統計數據
+      const totalSpecies = DATA.length;
+      const totalGenus = new Set(DATA.map(x => x.genus)).size;
+      const inStockCount = DATA.filter(x => x.stock === 'in-stock').length;
+      
+      document.getElementById('species-count').textContent = totalSpecies;
+      document.getElementById('genus-count').textContent = totalGenus;
+      document.getElementById('in-stock-count').textContent = inStockCount;
     }
 
     function initFilters(){
@@ -1161,22 +1163,78 @@ return node;
     function init(){
       document.getElementById('year').textContent = new Date().getFullYear();
       buildTabs();
+      updateStats();
       initFilters();
     }
 
     init();
 
     // 動態更新庫存狀態
-function updateStock(genus, species, newStock, newCount) {
-  const item = DATA.find(item => item.genus === genus && item.species === species);
-  if (item) {
-    item.stock = newStock;
-    item.stockCount = newCount;
-    // 重新渲染該物種的卡片
-    initFilters(); // 觸發重新渲染
-    console.log(`${item.cn} 庫存已更新為：${getStockText(newStock, newCount)}`);
+    function updateStock(genus, species, newStock, newCount) {
+      const item = DATA.find(item => item.genus === genus && item.species === species);
+      if (item) {
+        item.stock = newStock;
+        item.stockCount = newCount;
+        // 重新渲染該物種的卡片
+        initFilters(); // 觸發重新渲染
+        updateStats(); // 更新統計數據
+        console.log(`${item.cn} 庫存已更新為：${getStockText(newStock, newCount)}`);
+      }
+    }
+
+    // 平滑滾動到錨點
+    document.addEventListener('DOMContentLoaded', function() {
+      const links = document.querySelectorAll('a[href^="#"]');
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href.startsWith('#') && href.length > 1) {
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Google Analytics (請替換為您的 GA ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+
+  <!-- JSON-LD 結構化資料 for 商品 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "蜚蠊物種列表",
+    "description": "BlattaLab 提供的各種蜚蠊品種",
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "多米諾骨牌蜚蠊",
+        "description": "黑底白圓斑，似骨牌，新手友善品種",
+        "brand": "BlattaLab",
+        "category": "寵物昆蟲",
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "price": "0",
+          "priceCurrency": "TWD"
+        }
+      }
+    ]
   }
-}
   </script>
 </body>
 </html>
