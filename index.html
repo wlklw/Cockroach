@@ -1171,15 +1171,16 @@
 
     // 動態更新庫存狀態
     function updateStock(genus, species, newStock, newCount) {
-  const item = DATA.find(item => item.genus === genus && item.species === species);
-  if (item) {
-    item.stock = newStock;
-    item.stockCount = newCount;
-    // 重新渲染該物種的卡片
-    initFilters(); // 觸發重新渲染
-    console.log(${item.cn} 庫存已更新為：${getStockText(newStock, newCount)});
-  }
-}
+      const item = DATA.find(item => item.genus === genus && item.species === species);
+      if (item) {
+        item.stock = newStock;
+        item.stockCount = newCount;
+        // 重新渲染該物種的卡片
+        initFilters(); // 觸發重新渲染
+        updateStats(); // 更新統計數據
+        console.log(`${item.cn} 庫存已更新為：${getStockText(newStock, newCount)}`);
+      }
+    }
 
     // 平滑滾動到錨點
     document.addEventListener('DOMContentLoaded', function() {
