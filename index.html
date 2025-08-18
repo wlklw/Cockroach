@@ -1294,7 +1294,12 @@ function updateGrid() {
       const title = document.getElementById('section-title');
       title.textContent = genusFilter && genusFilter!=="ALL" ? `${genusFilter} 屬` : '全部物種';
     }
-
+// 綁定 select 事件
+document.getElementById('price-filter').addEventListener('change', () => {
+  // 根據你的頁面架構，這裡要重新取得各種篩選條件
+  // 例如：
+  render(currentGenus, $q.value, $difficulty.value, currentTagSet);
+});
     function buildTabs(){
       const uniq = Array.from(new Set(DATA.map(x=>x.genus)));
       const ordered = genusOrder.filter(g=>uniq.includes(g)).concat(uniq.filter(g=>!genusOrder.includes(g)));
