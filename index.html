@@ -1643,19 +1643,7 @@ function initTouchGestures() {
   initLazyLoading();
   initTouchGestures();
   initMobileFilters(); // 手機版篩選器
-  
-  // 預載入首屏圖片
-  if (window.innerWidth > 720) {
-    // 桌面版預載入前 4 張圖片
-    setTimeout(() => {
-      document.querySelectorAll('.lazy-image[data-src]').forEach((img, index) => {
-        if (index < 4) {
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-        }
-      });
-    }, 100);
-  }
+
   
   // 手機版提示
   if (window.innerWidth <= 720) {
