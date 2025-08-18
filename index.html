@@ -164,7 +164,50 @@
     .toolbar input,.toolbar select{background:#0f1216;border:1px solid var(--ring);color:var(--text);padding:10px 12px;border-radius:10px;outline:none}
     .toolbar .chip{padding:8px 10px;border:1px solid var(--ring);border-radius:999px;cursor:pointer;color:var(--muted)}
     .toolbar .chip.active{background:var(--accent);color:var(--text)}
+    
+/* 新增的搜尋相關樣式 */
+.search-container {
+  position: relative;
+  flex: 1;
+  max-width: 300px;
+}
 
+.search-input {
+  width: 100%;
+  padding: 10px 40px 10px 12px;
+  background: #0f1216;
+  border: 1px solid var(--ring);
+  color: var(--text);
+  border-radius: 10px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  fill: var(--muted);
+  pointer-events: none;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--panel);
+  border: 1px solid var(--ring);
+  border-radius: 10px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+}
+    
     .genus-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
     .tab{padding:10px 14px;border:1px solid var(--ring);border-radius:12px;color:var(--muted);cursor:pointer;background:var(--panel)}
     .tab.active{background:linear-gradient(180deg,#1a232d,#14202a);color:var(--text);border-color:#324150}
@@ -678,7 +721,6 @@
     <option value="5">★★★★★（進階）</option>
   </select>
 
-        <!-- 新增價格篩選 -->
   <select id="price-filter" aria-label="價格範圍">
     <option value="">價格：不限</option>
     <option value="0-500">$500 以下</option>
@@ -691,11 +733,6 @@
   <div class="chip" data-tag="現貨" role="button" tabindex="0">現貨</div>
   <div class="chip" data-tag="缺貨" role="button" tabindex="0">缺貨</div>
 </section>
-    
-      <div class="chip" data-tag="現貨" role="button" tabindex="0">現貨</div>
-      <div class="chip" data-tag="缺貨" role="button" tabindex="0">缺貨</div>
-    </section>
-
     <section id="genus">
       <div class="genus-tabs" role="tablist" aria-label="屬別">
         <!-- JS 生成屬別標籤 -->
