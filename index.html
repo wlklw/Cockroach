@@ -1168,85 +1168,65 @@ function updateGrid() {
     });
 
     function makeCard(item){
-      const tpl = document.getElementById('card-tpl');
-      const node = tpl.content.firstElementChild.cloneNode(true);
-      node.dataset.genus = item.genus;
-      node.dataset.tags = item.tags.join(',');
+  const tpl = document.getElementById('card-tpl');
+  const node = tpl.content.firstElementChild.cloneNode(true);
+  node.dataset.genus = item.genus;
+  node.dataset.tags = item.tags.join(',');
 
-      const thumb = node.querySelector('.thumb');
-      if (item.img) {
-        const img = document.createElement('img');
-        img.src = item.img;
-        img.alt = item.cn;
-        img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:18px 18px 0 0;';
-
-        img.onerror = function() {
-          this.style.display = 'none';
-          thumb.innerHTML = '<div class="ph">圖片載入失敗</div>';
-        };
-
-        const priceText = (item.price !== undefined && item.pack)
-  ? `$${item.price}（${item.pack}隻一組）`
-  : (item.price !== undefined ? `$${item.price}` : '需詢價');
-        
-        thumb.innerHTML = '';
-        thumb.appendChild(img);
-        const stockBadge = document.createElement('div');
-        stockBadge.className = `stock-badge ${item.stock}`;
-        stockBadge.textContent = getStockText(item.stock, item.stockCount);
-        thumb.appendChild(stockBadge);
-      }
-      
-      node.querySelector('.latin').textContent = `${item.latin}`;
-      node.querySelector('.cn').textContent = item.cn;
-      const meta = node.querySelector('.meta');
-      meta.innerHTML = ''; // 移除 meta 標籤
-      node.querySelector('.temp').textContent = `溫濕度：${item.temp}`;
-      node.querySelector('.diet').textContent = `食性：${item.diet}`;
-
-      const diffRow = node.querySelector('.diff');
-       diffRow.innerHTML = `難度：<span class="stars" aria-label="飼養難度 ${'★'.repeat(item.diff)}${'☆'.repeat(5-item.diff)}">${Array.from({length:5},(_,i)=>starSVG(i<item.diff)).join('')}</span>`;
-
-       // 新增：價格顯示區域
-  const priceRow = document.createElement('div');
-  priceRow.className = 'price-row';
-  
-  if (item.price === 'contact') {
-    priceRow.innerHTML = `
-      <span class="price-label">價格</span>
-      <span class="price-value contact-price">請洽詢</span>
-    `;
-  } else if (item.priceRange) {
-    priceRow.innerHTML = `
-      <span class="price-label">價格</span>
-      <div class="price-range">
-        <span class="price-from">從</span>
-        <span class="price-value">$${item.priceRange[0]}</span>
-        <span class="price-from">起</span>
-      </div>
-    `;
-  } else {
-    priceRow.innerHTML = `
-      <span class="price-label">價格</span>
-      <span class="price-value">$${item.price}</span>
-    `;
+  const thumb = node.querySelector('.thumb');
+  if (item.img) {
+    const img = document.createElement('img');
+    img.src = item.img;
+    img.alt = item.cn;
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:18px 18px 0 0;';
+    img.onerror = function() {
+      this.style.display = 'none';
+      thumb.innerHTML = '<div class="ph">圖片載入失敗</div>';
+    };
+    thumb.innerHTML = '';
+    thumb.appendChild(img);
+    const stockBadge = document.createElement('div');
+    stockBadge.className = `stock-badge ${item.stock}`;
+    stockBadge.textContent = getStockText(item.stock, item.stockCount);
+    thumb.appendChild(stockBadge);
   }
-  
-  // 將價格行插入到 card-body 中適當位置
+
+  node.querySelector('.latin').textContent = `${item.latin}`;
+  node.querySelector('.cn').textContent = item.cn;
+  const meta = node.querySelector('.meta');
+  meta.innerHTML = '';
+  node.querySelector('.temp').textContent = `溫濕度：${item.temp}`;
+  node.querySelector('.diet').textContent = `食性：${item.diet}`;
+  const diffRow = node.querySelector('.diff');
+  diffRow.innerHTML = `難度：<span class="stars" aria-label="飼養難度 ${'★'.repeat(item.diff)}${'☆'.repeat(5-item.diff)}">${Array.from({length:5},(_,i)=>starSVG(i<item.diff)).join('')}</span>`;
+
+  // === 價格顯示統一寫法 ===
+  let priceText;
+  if (item.price === undefined || item.price === null) {
+    priceText = '請洽詢';
+  } else if (item.pack) {
+    priceText = `$${item.price}（${item.pack}隻一組）`;
+  } else {
+    priceText = `$${item.price}`;
+  }
+  const priceRow = document.createElement('div');
+  priceRow.className = 'row price';
+  priceRow.innerHTML = `<span class="price-label">價格</span> <span class="price-value">${priceText}</span>`;
+  // 插入到 card-body buy 區塊前
   const cardBody = node.querySelector('.card-body');
   const buySection = node.querySelector('.buy');
   cardBody.insertBefore(priceRow, buySection);
-      
-      // 修改：只保留一個詳細介紹按鈕
-      const btnInfo = node.querySelector('.buy .btn');
-      btnInfo.href = `#${item.genus}-${item.species}`;
-      btnInfo.addEventListener('click', e=>{
-        e.preventDefault();
-        showModal(item); // 使用新的 Modal 函數，包含購買功能
-      });
 
-      return node;
-    }
+  // 詳細介紹按鈕
+  const btnInfo = node.querySelector('.buy .btn');
+  btnInfo.href = `#${item.genus}-${item.species}`;
+  btnInfo.addEventListener('click', e=>{
+    e.preventDefault();
+    showModal(item);
+  });
+
+  return node;
+}
 
     function render(genusFilter, query, diffFilter, tagSet) {
   $grid.innerHTML = '';
