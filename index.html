@@ -1026,7 +1026,32 @@
         ...item.tags.map(tag => ({ text: tag, type: 'tag', item }))
       ]);
       
-      // ... 其餘搜尋建議程式碼
+// 監聽價格篩選
+$priceFilter = document.getElementById('price-filter');
+$priceFilter.addEventListener('change', updateGrid);
+
+function filterByPrice(items) {
+  const value = $priceFilter.value;
+  if (!value) return items;
+  if (value === 'contact') {
+    return items.filter(x => x.price === undefined);
+  }
+  if (value.endsWith('+')) {
+    const min = parseInt(value.replace('+', ''), 10);
+    return items.filter(x => x.price !== undefined && x.price >= min);
+  }
+  const [min, max] = value.split('-').map(Number);
+  return items.filter(x => x.price !== undefined && x.price >= min && x.price <= max);
+}
+
+// 更新卡片顯示
+function updateGrid() {
+  let filtered = DATA;
+  // ...原本的 genus、難度、搜尋等過濾
+  // 加上價格過濾
+  filtered = filterByPrice(filtered);
+  // ...剩下的渲染卡片
+}
     }
     
     function highlightMatch(text, query) {
