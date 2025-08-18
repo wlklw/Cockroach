@@ -188,6 +188,13 @@
     .btn{flex:1;text-align:center;text-decoration:none;padding:10px 12px;border-radius:12px;border:1px solid #2e3b48;background:linear-gradient(180deg,#1a232d,#121820);color:#d5dee7;font-weight:600}
     .btn:hover{border-color:#3a4958}
     .btn.primary{background:linear-gradient(180deg,#23c48c,#1aa67e);border-color:#25b588;color:#07110e}
+    
+    /* 修改：為不同按鈕類型調整樣式 */
+    .btn.add-to-cart{background:linear-gradient(180deg,#23c48c,#1aa67e);border-color:#25b588;color:#07110e}
+    .btn.add-to-cart:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(33,196,140,0.3)}
+    
+    .btn.contact{background:linear-gradient(180deg,#f39c12,#e67e22);border-color:#e67e22;color:#fff}
+    .btn.contact:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(243,156,18,0.3)}
 
     .btn.out-of-stock {
       background: linear-gradient(180deg, #4a4a4a, #3a3a3a);
@@ -381,6 +388,24 @@
       gap: 8px;
     }
 
+    /* 新增：Modal 中的購買區域樣式 */
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--ring);
+    }
+
+    .modal-actions .btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+    }
+
     /* 手機版響應式補丁 */
     @media (max-width: 720px) {
       .grid {
@@ -509,6 +534,10 @@
         flex-direction: column;
         align-items: stretch;
       }
+
+      .modal-actions {
+        flex-direction: column;
+      }
     }
 
     @media (max-width: 480px) {
@@ -612,7 +641,7 @@
         </div>
       </div>
 
-      <!-- 新增：快速導航 -->
+      <!-- 修改：快速導航，移除重複的購買連結 -->
       <div class="quick-nav">
         <a href="#genus" class="quick-nav-item">
           <div class="quick-nav-title">🔍 瀏覽物種</div>
@@ -622,9 +651,9 @@
           <div class="quick-nav-title">⭐ 難度指南</div>
           <div class="quick-nav-desc">了解飼養難度星級，選擇適合的入門物種</div>
         </a>
-        <a href="https://myship.7-11.com.tw/general/detail/GM2508133179359" class="quick-nav-item" target="_blank">
-          <div class="quick-nav-title">🛒 購買服務</div>
-          <div class="quick-nav-desc">安全便利的7-11取貨服務，品質保證</div>
+        <a href="mailto:bumbuseximius@gmail.com" class="quick-nav-item">
+          <div class="quick-nav-title">📧 聯繫購買</div>
+          <div class="quick-nav-desc">有意購買請直接 Email 詢問現況與價格</div>
         </a>
         <a href="#about" class="quick-nav-item">
           <div class="quick-nav-title">📚 專業知識</div>
@@ -751,7 +780,7 @@
         <div style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
           <h4 style="margin: 0 0 6px 0; color: var(--brand); font-size: 13px;">📦 安全配送</h4>
           <p style="margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4;">
-            7-11 店到店，保證品質
+            安全包裝，品質保證
           </p>
         </div>
         <div style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
@@ -804,7 +833,7 @@
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
       <div>© <span id="year"></span> BlattaLab. All rights reserved.</div>
       <div style="display: flex; gap: 16px; font-size: 14px;">
-        <a href="mailto:bumbuseximius@gmail.com" style="color: var(--muted); text-decoration: none;">我們</a>
+        <a href="mailto:bumbuseximius@gmail.com" style="color: var(--muted); text-decoration: none;">聯繫我們</a>
         <a href="#guide" style="color: var(--muted); text-decoration: none;">飼養指南</a>
         <a href="#about" style="color: var(--muted); text-decoration: none;">關於我們</a>
       </div>
@@ -829,6 +858,10 @@
         <div class="modal-info" id="modal-info">
           <!-- JS 生成內容 -->
         </div>
+        <!-- 新增：Modal 中的購買操作區域 -->
+        <div class="modal-actions" id="modal-actions">
+          <!-- JS 生成購買按鈕 -->
+        </div>
       </div>
     </div>
   </div>
@@ -844,16 +877,13 @@
         <div class="row diet"></div>
         <div class="row diff"></div>
         <div class="buy">
-          <a class="btn" target="_blank" rel="noopener">物種介紹</a>
-          <a class="btn primary" target="_blank" rel="noopener">購買連結</a>
+          <a class="btn" target="_blank" rel="noopener">詳細介紹</a>
         </div>
       </div>
     </article>
   </template>
 
   <script>
-    const STORE_URL = "https://myship.7-11.com.tw/general/detail/GM2508133179359";
-
     const DATA = [
       // 鼈蠊屬
       {genus:"Therea", species:"olegrandjeani", latin:"Therea olegrandjeani", cn:"問號蜚蠊", stock: "in-stock", features:"黑底翅面中央白色問號狀斑紋", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月", diet:"高蛋白犬/貓/雞飼料、水果、昆蟲果凍", temp:"24–30°C；60–80%（需乾濕分明）", diff:2, tags:["缺貨","新手+"], info:"需提供濕度梯度以避免脫皮不良", img:"images/IMG20181211214008.jpg"},
@@ -898,6 +928,7 @@
     const $modalSubtitle = document.getElementById('modal-subtitle');
     const $modalImage = document.getElementById('modal-image');
     const $modalInfo = document.getElementById('modal-info');
+    const $modalActions = document.getElementById('modal-actions');
     const $closeModal = document.getElementById('close-modal');
 
     function starSVG(fill){
@@ -914,11 +945,13 @@
       }
     }
 
-    // 獲取購買按鈕文字
-    function getBuyButtonText(stock) {
+    // 獲取購買按鈕文字和樣式
+    function getBuyButtonInfo(stock) {
       switch(stock) {
-        case 'out-of-stock': return '缺貨中';
-        default: return '購買連結';
+        case 'out-of-stock': 
+          return { text: '聯繫我們', class: 'btn contact', href: 'mailto:bumbuseximius@gmail.com?subject=詢問缺貨商品' };
+        default: 
+          return { text: '我想購買', class: 'btn add-to-cart', href: 'mailto:bumbuseximius@gmail.com?subject=購買諮詢' };
       }
     }
     
@@ -980,6 +1013,21 @@
           <div class="info-label">重點提示</div>
           <div class="info-value">${item.info}</div>
         </div>
+      `;
+
+      // 生成購買按鈕
+      const buyInfo = getBuyButtonInfo(item.stock);
+      const stockBadgeText = getStockText(item.stock, item.stockCount);
+      
+      $modalActions.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
+          <div class="stock-badge ${item.stock}" style="position: static; padding: 8px 12px;">
+            ${stockBadgeText}
+          </div>
+        </div>
+        <a href="${buyInfo.href}" class="${buyInfo.class}" target="_blank" rel="noopener">
+          ${buyInfo.text}
+        </a>
       `;
 
       // 顯示 Modal
@@ -1045,31 +1093,13 @@
       const diffRow = node.querySelector('.diff');
       diffRow.innerHTML = `難度：<span class="stars" aria-label="飼養難度 ${'★'.repeat(item.diff)}${'☆'.repeat(5-item.diff)}">${Array.from({length:5},(_,i)=>starSVG(i<item.diff)).join('')}</span>`;
 
-      const [btnInfo, btnBuy] = node.querySelectorAll('.buy .btn');
+      // 修改：只保留一個詳細介紹按鈕
+      const btnInfo = node.querySelector('.buy .btn');
       btnInfo.href = `#${item.genus}-${item.species}`;
       btnInfo.addEventListener('click', e=>{
         e.preventDefault();
-        showModal(item); // 使用新的 Modal 函數
+        showModal(item); // 使用新的 Modal 函數，包含購買功能
       });
-      // 修改購買按鈕邏輯
-      btnBuy.textContent = getBuyButtonText(item.stock);
-
-      if (item.stock === 'out-of-stock') {
-        // 缺貨狀態
-        btnBuy.className = 'btn out-of-stock';
-        btnBuy.href = '#';
-        btnBuy.setAttribute('aria-disabled', 'true');
-        btnBuy.setAttribute('aria-label', `${item.latin} 目前缺貨中`);
-        btnBuy.addEventListener('click', (e) => {
-          e.preventDefault();
-          alert('此商品目前缺貨中，請稍後再試或聯繫我們了解補貨時間');
-        });
-      } else {
-        // 有庫存狀態
-        btnBuy.className = 'btn primary';
-        btnBuy.href = STORE_URL;
-        btnBuy.setAttribute('aria-label', `${item.latin} 購買連結`);
-      }
 
       return node;
     }
