@@ -1333,7 +1333,6 @@ function updateGrid() {
       thumb.innerHTML = '<div class="ph">圖片載入失敗</div>';
     };
 
-    // 懶加載成功回調
     img.onload = function() {
       this.classList.add('loaded');
     };
@@ -1356,6 +1355,7 @@ function updateGrid() {
 
   const diffRow = node.querySelector('.diff');
   diffRow.innerHTML = `難度：<span class="stars" aria-label="飼養難度 ${'★'.repeat(item.diff)}${'☆'.repeat(5-item.diff)}">${Array.from({length:5},(_,i)=>starSVG(i<item.diff)).join('')}</span>`;
+
   // === 價格顯示統一寫法 ===
   let priceText;
   if (item.price === undefined || item.price === null) {
@@ -1368,12 +1368,11 @@ function updateGrid() {
   const priceRow = document.createElement('div');
   priceRow.className = 'row price';
   priceRow.innerHTML = `<span class="price-label">價格</span> <span class="price-value">${priceText}</span>`;
-  // 插入到 card-body buy 區塊前
   const cardBody = node.querySelector('.card-body');
   const buySection = node.querySelector('.buy');
   cardBody.insertBefore(priceRow, buySection);
 
-       // 手機版整張卡片點擊
+  // 手機版整張卡片點擊
   const isMobile = window.innerWidth <= 720;
   if (isMobile) {
     node.style.cursor = 'pointer';
@@ -1385,7 +1384,8 @@ function updateGrid() {
       }
     });
   }
-  
+
+  // 詳細介紹按鈕
   const btnInfo = node.querySelector('.buy .btn');
   btnInfo.href = `#${item.genus}-${item.species}`;
   btnInfo.addEventListener('click', e=>{
@@ -1394,16 +1394,7 @@ function updateGrid() {
     showModal(item);
   });
 
-  return node;
-}
-  // 詳細介紹按鈕
-  const btnInfo = node.querySelector('.buy .btn');
-  btnInfo.href = `#${item.genus}-${item.species}`;
-  btnInfo.addEventListener('click', e=>{
-    e.preventDefault();
-    showModal(item);
-  });
-
+  // 最後只 return 一次
   return node;
 }
 
