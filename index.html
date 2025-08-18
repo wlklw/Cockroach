@@ -663,15 +663,39 @@
     </section>
 
     <section class="toolbar" aria-label="篩選工具">
-      <input id="q" type="search" placeholder="搜尋學名 / 中文名 / 關鍵字…" aria-label="搜尋物種" />
-      <select id="difficulty" aria-label="飼養難度">
-        <option value="">難度：不限</option>
-        <option value="1">★☆☆☆☆（新手）</option>
-        <option value="2">★★☆☆☆（新手）</option>
-        <option value="3">★★★☆☆</option>
-        <option value="4">★★★★☆</option>
-        <option value="5">★★★★★（進階）</option>
-      </select>
+  <div class="search-container">
+    <input id="q" type="search" class="search-input" placeholder="搜尋學名 / 中文名 / 關鍵字…" aria-label="搜尋物種" autocomplete="off" />
+    <svg class="search-icon" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+    </svg>
+    <div id="search-suggestions" class="search-suggestions">
+      <!-- JS 動態生成建議 -->
+    </div>
+  </div>
+  
+  <select id="difficulty" aria-label="飼養難度">
+    <option value="">難度：不限</option>
+    <option value="1">★☆☆☆☆（新手）</option>
+    <option value="2">★★☆☆☆（新手）</option>
+    <option value="3">★★★☆☆</option>
+    <option value="4">★★★★☆</option>
+    <option value="5">★★★★★（進階）</option>
+  </select>
+
+        <!-- 新增價格篩選 -->
+  <select id="price-filter" aria-label="價格範圍">
+    <option value="">價格：不限</option>
+    <option value="0-500">$500 以下</option>
+    <option value="500-1000">$500-1000</option>
+    <option value="1000-2000">$1000-2000</option>
+    <option value="2000+">$2000 以上</option>
+    <option value="contact">需詢價</option>
+  </select>
+  
+  <div class="chip" data-tag="現貨" role="button" tabindex="0">現貨</div>
+  <div class="chip" data-tag="缺貨" role="button" tabindex="0">缺貨</div>
+</section>
+    
       <div class="chip" data-tag="現貨" role="button" tabindex="0">現貨</div>
       <div class="chip" data-tag="缺貨" role="button" tabindex="0">缺貨</div>
     </section>
@@ -886,7 +910,7 @@
   <script>
     const DATA = [
       // 鼈蠊屬
-      {genus:"Therea", species:"olegrandjeani", latin:"Therea olegrandjeani", cn:"問號蜚蠊", stock: "in-stock", features:"黑底翅面中央白色問號狀斑紋", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月", diet:"高蛋白犬/貓/雞飼料、水果、昆蟲果凍", temp:"24–30°C；60–80%（需乾濕分明）", diff:2, tags:["缺貨","新手+"], info:"需提供濕度梯度以避免脫皮不良", img:"images/IMG20181211214008.jpg"},
+      {genus:"Therea", species:"olegrandjeani", latin:"Therea olegrandjeani", cn:"問號蜚蠊", stock: "in-stock", price: 800, features:"黑底翅面中央白色問號狀斑紋", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月", diet:"高蛋白犬/貓/雞飼料、水果、昆蟲果凍", temp:"24–30°C；60–80%（需乾濕分明）", diff:2, tags:["缺貨","新手+"], info:"需提供濕度梯度以避免脫皮不良", img:"images/IMG20181211214008.jpg"},
       {genus:"Therea", species:"bernhardti", latin:"Therea bernhardti", cn:"多米諾骨牌蜚蠊", stock: "in-stock", features:"黑底白圓斑，似骨牌", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月。", diet:"高蛋白犬/貓/雞飼料、水果、昆蟲果凍", temp:"24–30°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"適應性強，對環境要求低", img:"images/IMG_9342.JPG"},
       {genus:"Therea", species:"regularis", latin:"Therea regularis", cn:"多米諾橘骨牌蜚蠊", stock: "in-stock",  features:"黑底搭配橘白斑，對比強烈", origin:"印度", habit:"此物種為地棲性，幼蟲與成蟲都會將大部分時間埋藏在底材中。成年雄性有時會爬到地表的樹枝上活動 。雌性將卵鞘直接產在底材中，孵化時間約需三到五個月", diet:"高蛋白犬/貓/雞飼料、水果、昆蟲果凍", temp:"24–30°C；60–70%", diff:1, tags:["現貨","新手友善"], info:"容錯率高，新手適合", img:"images/IMG_9157.JPG"},
       {genus:"Therea", species:"cf_irreperta", latin:"Therea cf. irreperta", cn:"Therea cf. irreperta", stock: "out-of-stock",  features:"黑底對稱橘斑，與橘骨牌相似", origin:"印度", habit:" 屬於地棲性物種，日間潛伏於底材中，夜間才會出來活動 。此物種在同屬中較為特殊，因為雌雄兩性皆具備相對較長的翅膀，且有飛行能力", diet:"高蛋白犬/貓/雞飼料、水果、昆蟲果凍", temp:"24–30°C；需乾濕交界區", diff:2, tags:["缺貨"], info:"底材濕度控制重要", img:"images/IMG_9483.jpeg"},
@@ -953,6 +977,34 @@
         default: 
           return { text: '我想購買', class: 'btn add-to-cart', href: 'mailto:bumbuseximius@gmail.com?subject=購買諮詢' };
       }
+    }
+
+    // 🔍 新增：在這裡插入搜尋建議功能
+    function initSearchSuggestions() {
+      const searchInput = document.getElementById('q');
+      const suggestionsDiv = document.getElementById('search-suggestions');
+      let selectedIndex = -1;
+      
+      // 建立搜尋索引
+      const searchIndex = DATA.flatMap(item => [
+        { text: item.latin, type: 'latin', item },
+        { text: item.cn, type: 'chinese', item },
+        { text: item.genus, type: 'genus', item },
+        ...item.tags.map(tag => ({ text: tag, type: 'tag', item }))
+      ]);
+      
+      // ... 其餘搜尋建議程式碼
+    }
+    
+    function highlightMatch(text, query) {
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, '<span class="suggestion-highlight">$1</span>');
+    }
+    
+    function updateSelection(items) {
+      items.forEach((item, index) => {
+        item.classList.toggle('selected', index === selectedIndex);
+      });
     }
     
     function showModal(item) {
@@ -1091,8 +1143,38 @@
       node.querySelector('.diet').textContent = `食性：${item.diet}`;
 
       const diffRow = node.querySelector('.diff');
-      diffRow.innerHTML = `難度：<span class="stars" aria-label="飼養難度 ${'★'.repeat(item.diff)}${'☆'.repeat(5-item.diff)}">${Array.from({length:5},(_,i)=>starSVG(i<item.diff)).join('')}</span>`;
+       diffRow.innerHTML = `難度：<span class="stars" aria-label="飼養難度 ${'★'.repeat(item.diff)}${'☆'.repeat(5-item.diff)}">${Array.from({length:5},(_,i)=>starSVG(i<item.diff)).join('')}</span>`;
 
+       // 新增：價格顯示區域
+  const priceRow = document.createElement('div');
+  priceRow.className = 'price-row';
+  
+  if (item.price === 'contact') {
+    priceRow.innerHTML = `
+      <span class="price-label">價格</span>
+      <span class="price-value contact-price">請洽詢</span>
+    `;
+  } else if (item.priceRange) {
+    priceRow.innerHTML = `
+      <span class="price-label">價格</span>
+      <div class="price-range">
+        <span class="price-from">從</span>
+        <span class="price-value">$${item.priceRange[0]}</span>
+        <span class="price-from">起</span>
+      </div>
+    `;
+  } else {
+    priceRow.innerHTML = `
+      <span class="price-label">價格</span>
+      <span class="price-value">$${item.price}</span>
+    `;
+  }
+  
+  // 將價格行插入到 card-body 中適當位置
+  const cardBody = node.querySelector('.card-body');
+  const buySection = node.querySelector('.buy');
+  cardBody.insertBefore(priceRow, buySection);
+      
       // 修改：只保留一個詳細介紹按鈕
       const btnInfo = node.querySelector('.buy .btn');
       btnInfo.href = `#${item.genus}-${item.species}`;
@@ -1189,6 +1271,7 @@
       buildTabs();
       updateStats();
       initFilters();
+      initSearchSuggestions(); 
     }
 
     init();
