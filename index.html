@@ -1575,40 +1575,62 @@ function initTouchGestures() {
 }
 
     function initFilters(){
-      const activeTags = new Set();
-      let activeGenus = 'ALL';
+  const activeTags = new Set();
+  let activeGenus = 'ALL';
 
-      function sync(){
-        render(activeGenus, $q.value, $difficulty.value, activeTags);
-        document.querySelectorAll('.tab').forEach(t=>{
-          t.classList.toggle('active', t.dataset.genus===activeGenus);
-        });
-        document.querySelectorAll('.chip').forEach(c=>{
-          c.classList.toggle('active', activeTags.has(c.dataset.tag));
-        });
-        const hash = `#g=${encodeURIComponent(activeGenus)}&q=${encodeURIComponent($q.value)}&d=${$difficulty.value}&t=${encodeURIComponent([...activeTags].join(','))}`;
-        history.replaceState(null,'',hash);
-      }
+  function sync(){
+    render(activeGenus, $q.value, $difficulty.value, activeTags);
+    document.querySelectorAll('.tab').forEach(t=>{
+      t.classList.toggle('active', t.dataset.genus===activeGenus);
+    });
+    document.querySelectorAll('.chip').forEach(c=>{
+      c.classList.toggle('active', activeTags.has(c.dataset.tag));
+    });
+    const hash = `#g=${encodeURIComponent(activeGenus)}&q=${encodeURIComponent($q.value)}&d=${$difficulty.value}&t=${encodeURIComponent([...activeTags].join(','))}`;
+    history.replaceState(null,'',hash);
+  }
 
-      $tabs.addEventListener('click', e=>{
-        const debouncedSync = debounce(sync, 300);
-$q.addEventListener('input', debouncedSync);
-      $difficulty.addEventListener('change', sync);
-      $chips.forEach(c=>{
-        c.addEventListener('click', ()=>{ const k=c.dataset.tag; activeTags.has(k)?activeTags.delete(k):activeTags.add(k); sync(); });
-        c.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); c.click(); } });
-      });
-
-      // restore from hash
-      const params = new URLSearchParams(location.hash.replace(/^#/,''));
-      const g = params.get('g'); const q=params.get('q'); const d=params.get('d'); const t=params.get('t');
-      if(g){ activeGenus = decodeURIComponent(g); }
-      if(q){ $q.value = decodeURIComponent(q); }
-      if(d){ $difficulty.value = d; }
-      if(t){ decodeURIComponent(t).split(',').filter(Boolean).forEach(x=>activeTags.add(x)); }
-
+  // 標籤點擊
+  $tabs.addEventListener('click', e=>{
+    const t = e.target.closest('.tab');
+    if (t) {
+      activeGenus = t.dataset.genus;
       sync();
     }
+  });
+
+  // 搜尋 input debounce
+  const debouncedSync = debounce(sync, 300);
+  $q.addEventListener('input', debouncedSync);
+
+  // 難度選擇
+  $difficulty.addEventListener('change', sync);
+
+  // tag chip 點擊與鍵盤
+  $chips.forEach(c=>{
+    c.addEventListener('click', ()=>{
+      const k = c.dataset.tag;
+      activeTags.has(k) ? activeTags.delete(k) : activeTags.add(k);
+      sync();
+    });
+    c.addEventListener('keydown', (ev)=>{
+      if(ev.key==='Enter' || ev.key===' '){
+        ev.preventDefault();
+        c.click();
+      }
+    });
+  });
+
+  // restore from hash
+  const params = new URLSearchParams(location.hash.replace(/^#/,''));
+  const g = params.get('g'), q = params.get('q'), d = params.get('d'), t = params.get('t');
+  if(g){ activeGenus = decodeURIComponent(g); }
+  if(q){ $q.value = decodeURIComponent(q); }
+  if(d){ $difficulty.value = d; }
+  if(t){ decodeURIComponent(t).split(',').filter(Boolean).forEach(x=>activeTags.add(x)); }
+
+  sync();
+}
 
     function init(){
   document.getElementById('year').textContent = new Date().getFullYear();
