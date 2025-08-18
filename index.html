@@ -1288,11 +1288,10 @@ if (priceFilter) {
     return true;
   });
 }
-  list.forEach(item=> $grid.appendChild(makeCard(item)));
-  $count.textContent = `${list.length} 筆`;
-  const title = document.getElementById('section-title');
-  title.textContent = genusFilter && genusFilter!=="ALL" ? `${genusFilter} 屬` : '全部物種';
-}
+  // 假設 toolbar 裡的所有篩選器都會呼叫 render
+document.getElementById('price-filter').addEventListener('change', ()=>{
+  render(/* 你的其它參數，如 genusFilter, query, diffFilter, tagSet */);
+});
 
 // 綁定事件，確保 currentGenus/currentTagSet 是最新的
 document.getElementById('price-filter').addEventListener('change', () => {
