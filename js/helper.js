@@ -1,5 +1,6 @@
-import { DATA } from 'data.js';
-import { showModal } from 'ui.js';
+// js/helper.js
+import { DATA } from './data.js';
+import { showModal } from './ui.js';
 
 let helperData = {
     experience: null,
@@ -179,6 +180,240 @@ export function initHelper() {
         }
     });
 }
+
+// CSS 樣式
+const helperCSS = `
+.helper-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.helper-modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.helper-container {
+  background: var(--card);
+  border: 1px solid var(--ring);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.helper-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--ring);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.helper-header h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 18px;
+}
+
+.helper-body {
+  padding: 20px 24px;
+}
+
+.helper-step {
+  display: none;
+}
+
+.helper-step.active {
+  display: block;
+  animation: slideIn 0.3s ease;
+}
+
+.helper-step h4 {
+  color: var(--text);
+  font-size: 16px;
+}
+
+.helper-option {
+  background: var(--panel);
+  border: 2px solid var(--ring);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.helper-option:hover {
+  border-color: var(--brand);
+  background: var(--accent);
+}
+
+.helper-option.selected {
+  border-color: var(--brand);
+  background: rgba(33, 196, 140, 0.1);
+}
+
+.helper-icon {
+  font-size: 24px;
+  width: 40px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.helper-content {
+  flex: 1;
+}
+
+.helper-content h4 {
+  margin: 0 0 4px 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.helper-content p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.helper-nav {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.helper-nav .btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--ring);
+  background: var(--panel);
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.helper-nav .btn:hover {
+  background: var(--accent);
+  border-color: var(--brand);
+}
+
+.helper-nav .btn.primary {
+  background: var(--brand);
+  color: #07110e;
+  border-color: var(--brand);
+}
+
+.helper-nav .btn.primary:hover {
+  background: #1ea374;
+}
+
+.recommendation-card {
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 12px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--ring);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.recommendation-card:hover {
+  border-color: var(--brand);
+  background: var(--accent);
+}
+
+.rec-info {
+  flex: 1;
+}
+
+.rec-info h4 {
+  margin: 0 0 4px 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rec-info p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.rec-price {
+  background: var(--brand);
+  color: #07110e;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--text);
+}
+`;
 
 // HTML 模板
 const helperHTML = `
