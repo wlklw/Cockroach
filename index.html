@@ -96,7 +96,11 @@
         </div>
         <select id="difficulty" aria-label="飼養難度"><option value="">難度：不限</option><option value="1">★☆☆☆☆（新手）</option><option value="2">★★☆☆☆（新手）</option><option value="3">★★★☆☆</option><option value="4">★★★★☆</option><option value="5">★★★★★（進階）</option></select>
         <select id="price-filter" aria-label="價格範圍"><option value="">價格：不限</option><option value="0-500">$500 以下</option><option value="500-1000">$500-1000</option><option value="1000-2000">$1000-2000</option><option value="2000+">$2000 以上</option><option value="contact">需詢價</option></select>
-        <button class="chip" data-tag="現貨" type="button">現貨</button>
+      <button class="btn primary" onclick="showHelper()" style="white-space: nowrap; display: flex; align-items: center; gap: 6px;">
+        <span>🔍</span>
+        <span>選購小幫手</span>
+    </button>  
+      <button class="chip" data-tag="現貨" type="button">現貨</button>
         <button class="chip" data-tag="缺貨" type="button">缺貨</button>
     </section>
 
