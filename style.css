@@ -1,0 +1,144 @@
+:root {
+  --bg: #0e1012;
+  --panel: #15181c;
+  --muted: #9aa4af;
+  --text: #e6ebf0;
+  --brand: #21c48c;
+}
+
+/* 全域 */
+body {
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  background: linear-gradient(180deg,#0b0d10, #0f1317 30%, #0b0d10);
+  color: var(--text);
+}
+
+/* 導覽列 */
+header {
+  background: var(--panel);
+  padding: 12px 20px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand .logo img {
+  height: 32px;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
+/* Hero */
+.hero {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* 社群連結 */
+.social-links {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.social-link {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* 統計 */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* 工具列 */
+.toolbar {
+  display: flex;
+  gap: 12px;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 8px;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+}
+
+.chip {
+  padding: 6px 12px;
+  border: 1px solid var(--brand);
+  background: transparent;
+  border-radius: 16px;
+  color: var(--brand);
+  cursor: pointer;
+}
+
+/* 卡片 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.card {
+  background: var(--panel);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.thumb img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 12px;
+}
+
+.latin {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.cn {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 4px;
+}
