@@ -1555,17 +1555,47 @@ function restartHelper() {
     
     // 🔍 新增：在這裡插入搜尋建議功能
     function initSearchSuggestions() {
-      const searchInput = document.getElementById('q');
-      const suggestionsDiv = document.getElementById('search-suggestions');
-      let selectedIndex = -1;
-      
-      // 建立搜尋索引
-      const searchIndex = DATA.flatMap(item => [
-        { text: item.latin, type: 'latin', item },
-        { text: item.cn, type: 'chinese', item },
-        { text: item.genus, type: 'genus', item },
-        ...item.tags.map(tag => ({ text: tag, type: 'tag', item }))
-      ]);
+  const searchInput = document.getElementById('q');
+  const suggestionsDiv = document.getElementById('search-suggestions');
+  let selectedIndex = -1;
+  
+  // 建立搜尋索引
+  const searchIndex = DATA.flatMap(item => [
+    { text: item.latin, type: 'latin', item },
+    { text: item.cn, type: 'chinese', item },
+    { text: item.genus, type: 'genus', item },
+    ...item.tags.map(tag => ({ text: tag, type: 'tag', item }))
+  ]);
+  
+  // ⭐ 添加實際的搜尋功能
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.trim();
+    if (query.length < 2) {
+      suggestionsDiv.style.display = 'none';
+      return;
+    }
+    
+    const matches = searchIndex
+      .filter(item => item.text.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 5);
+    
+    if (matches.length > 0) {
+      suggestionsDiv.innerHTML = matches.map(match => 
+        `<div class="suggestion-item">${highlightMatch(match.text, query)}</div>`
+      ).join('');
+      suggestionsDiv.style.display = 'block';
+    } else {
+      suggestionsDiv.style.display = 'none';
+    }
+  });
+  
+  // 點擊外部關閉建議
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-container')) {
+      suggestionsDiv.style.display = 'none';
+    }
+  });
+}
       
 // 監聽價格篩選
 $priceFilter = document.getElementById('price-filter');
@@ -2037,7 +2067,7 @@ function initTouchGestures() {
   initLazyLoading();
   initTouchGestures();
   initMobileFilters(); // 手機版篩選器
-
+  initHelper();
   
   // 手機版提示
   if (window.innerWidth <= 720) {
@@ -2131,6 +2161,14 @@ function debounce(func, wait) {
         });
       });
     });
+    // 全局函數 - 讓 HTML 中的 onclick 能正常工作
+window.showHelper = showHelper;
+window.closeHelper = closeHelper;
+window.selectHelperOption = selectHelperOption;
+window.helperNextStep = helperNextStep;
+window.helperPrevStep = helperPrevStep;
+window.restartHelper = restartHelper;
+window.selectSpecies = selectSpecies;
   </script>
 
   <!-- Google Analytics (請替換為您的 GA ID) -->
@@ -2165,6 +2203,7 @@ function debounce(func, wait) {
       }
     ]
   }
+    
   </script>
 </body>
 </html>
