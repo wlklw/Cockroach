@@ -140,3 +140,4 @@ export function makeCard(item){
 
     return node;
 }
+export { showModal };
