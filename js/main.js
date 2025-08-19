@@ -1,7 +1,6 @@
 // js/main.js
 import { DATA, genusOrder } from './data.js';
 import { makeCard, initModalEventListeners } from './ui.js';
-import { initHelper } from './helper.js'; // 新增導入
 
 const $grid = document.getElementById('grid');
 const $count = document.getElementById('count');
@@ -161,7 +160,6 @@ function init() {
     initFilters();
     initModalEventListeners();
     initLazyLoading();
-    initHelper(); // 新增：初始化購物小幫手
 }
 
 document.addEventListener('DOMContentLoaded', init);
