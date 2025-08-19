@@ -1001,11 +1001,11 @@ box-shadow: 0 8px 16px rgba(0,0,0,0.18);
   </section>
 </main>
 
-    <!-- 修改後的 About 區段 -->
+  <!-- 修改後的 About 區段（含最佳化語意與無障礙建議） -->
 <section id="about" class="container" style="margin-top:28px">
   <div class="section-title"><h2>關於 BlattaLab</h2></div>
   
-  <!-- 加入品牌視覺元素 -->
+  <!-- 品牌視覺元素 -->
   <div class="about-content" style="display: flex; gap: 24px; align-items: flex-start; margin-top: 16px;">
     
     <!-- Logo 視覺元素 -->
@@ -1022,7 +1022,7 @@ box-shadow: 0 8px 16px rgba(0,0,0,0.18);
     <!-- 資訊 -->
     <div class="about-text" style="flex: 1;">
       <p style="color:var(--muted);max-width:80ch;margin:0 0 16px 0;">
-       Email : bumbuseximius@gmail.com
+        Email : <a href="mailto:bumbuseximius@gmail.com" style="color:var(--brand);text-decoration:underline;">bumbuseximius@gmail.com</a>
       </p>
       
       <!-- 品牌理念 -->
@@ -1033,34 +1033,34 @@ box-shadow: 0 8px 16px rgba(0,0,0,0.18);
         </p>
       </div>
       
-      <!-- 新增：服務特色 -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px;">
-        <div style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
+      <!-- 服務特色（用 ul/li 語意化） -->
+      <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; list-style: none; padding-left: 0;">
+        <li style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
           <h4 style="margin: 0 0 6px 0; color: var(--brand); font-size: 13px;">🔬 科學標準</h4>
           <p style="margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4;">
             研究級資料收集與驗證
           </p>
-        </div>
-        <div style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
+        </li>
+        <li style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
           <h4 style="margin: 0 0 6px 0; color: var(--brand); font-size: 13px;">📦 安全配送</h4>
           <p style="margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4;">
             安全包裝，品質保證
           </p>
-        </div>
-        <div style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
+        </li>
+        <li style="background: var(--card); padding: 12px; border-radius: 10px; border: 1px solid var(--ring);">
           <h4 style="margin: 0 0 6px 0; color: var(--brand); font-size: 13px;">🎓 教育推廣</h4>
           <p style="margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4;">
             專業飼養知識分享
           </p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
   
-  <!-- 新增：常見問題 FAQ -->
+  <!-- FAQ 區塊（增加 aria-label） -->
   <div style="margin-top: 32px;">
     <h3 style="color: var(--text); margin-bottom: 16px;">常見問題 FAQ</h3>
-    <div style="display: grid; gap: 12px;">
+    <div style="display: grid; gap: 12px;" aria-label="常見問題列表">
       <details style="background: var(--panel); border: 1px solid var(--ring); border-radius: 12px; padding: 16px;">
         <summary style="color: var(--brand); cursor: pointer; font-weight: 600; margin-bottom: 8px;">
           新手應該選擇什麼品種？
@@ -1090,7 +1090,7 @@ box-shadow: 0 8px 16px rgba(0,0,0,0.18);
     </div>
   </div>
 </section>
-
+  
   </main>
 
   <footer class="container">
@@ -1107,7 +1107,7 @@ box-shadow: 0 8px 16px rgba(0,0,0,0.18);
     </div>
   </footer>
 
-  <!-- Modal 彈窗 -->
+   <!-- Modal 彈窗 -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-content">
       <div class="modal-header">
