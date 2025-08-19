@@ -1,5 +1,5 @@
-import { DATA } from './data.js';
-import { showModal } from './ui.js';
+import { DATA } from 'data.js';
+import { showModal } from 'ui.js';
 
 let helperData = {
     experience: null,
