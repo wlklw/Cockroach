@@ -140,3 +140,5 @@ export function makeCard(item){
 
     return node;
 }
+// 導出 showModal 函數供其他模組使用
+export { showModal };
