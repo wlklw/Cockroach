@@ -1220,6 +1220,339 @@ box-shadow: 0 8px 16px rgba(0,0,0,0.18);
       }
     }
 
+// 選購小幫手
+const helperCSS = `
+.helper-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.helper-modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.helper-container {
+  background: var(--card);
+  border: 1px solid var(--ring);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlideIn 0.3s ease;
+}
+
+.helper-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--ring);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.helper-body {
+  padding: 20px 24px;
+}
+
+.helper-step {
+  display: none;
+}
+
+.helper-step.active {
+  display: block;
+  animation: slideIn 0.3s ease;
+}
+
+.helper-option {
+  background: var(--panel);
+  border: 2px solid var(--ring);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.helper-option:hover {
+  border-color: var(--brand);
+  background: var(--accent);
+}
+
+.helper-option.selected {
+  border-color: var(--brand);
+  background: rgba(33, 196, 140, 0.1);
+}
+
+.helper-icon {
+  font-size: 24px;
+  width: 40px;
+  text-align: center;
+}
+
+.helper-content h4 {
+  margin: 0 0 4px 0;
+  color: var(--text);
+}
+
+.helper-content p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.helper-nav {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.recommendation-card {
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 12px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--ring);
+}
+
+.rec-info h4 {
+  margin: 0 0 4px 0;
+  color: var(--text);
+}
+
+.rec-info p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.rec-price {
+  background: var(--brand);
+  color: #07110e;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+`;
+
+// 2. 選購小幫手的 HTML 結構
+const helperHTML = `
+<div id="helper-modal" class="helper-modal">
+  <div class="helper-container">
+    <div class="helper-header">
+      <h3>🔍 選購小幫手</h3>
+      <button class="close-btn" onclick="closeHelper()">&times;</button>
+    </div>
+    <div class="helper-body">
+      <!-- Step 1 -->
+      <div class="helper-step active" id="helper-step-1">
+        <h4 style="margin-bottom: 16px;">您的飼養經驗如何？</h4>
+        <div class="helper-option" data-value="beginner" onclick="selectHelperOption(1, 'beginner', this)">
+          <div class="helper-icon">🌱</div>
+          <div class="helper-content">
+            <h4>完全新手</h4>
+            <p>第一次飼養蜚蠊，希望簡單好照顧</p>
+          </div>
+        </div>
+        <div class="helper-option" data-value="some" onclick="selectHelperOption(1, 'some', this)">
+          <div class="helper-icon">🌿</div>
+          <div class="helper-content">
+            <h4>有點經驗</h4>
+            <p>養過其他昆蟲，想嘗試新品種</p>
+          </div>
+        </div>
+        <div class="helper-option" data-value="experienced" onclick="selectHelperOption(1, 'experienced', this)">
+          <div class="helper-icon">🌳</div>
+          <div class="helper-content">
+            <h4>經驗豐富</h4>
+            <p>想挑戰更特別的品種</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="helper-step" id="helper-step-2">
+        <h4 style="margin-bottom: 16px;">您的預算範圍？</h4>
+        <div class="helper-option" data-value="low" onclick="selectHelperOption(2, 'low', this)">
+          <div class="helper-icon">💰</div>
+          <div class="helper-content">
+            <h4>$500 以下</h4>
+            <p>想先試試看，不要太貴</p>
+          </div>
+        </div>
+        <div class="helper-option" data-value="medium" onclick="selectHelperOption(2, 'medium', this)">
+          <div class="helper-icon">💳</div>
+          <div class="helper-content">
+            <h4>$500 - $1000</h4>
+            <p>可以接受中等價位的品種</p>
+          </div>
+        </div>
+        <div class="helper-option" data-value="high" onclick="selectHelperOption(2, 'high', this)">
+          <div class="helper-icon">💎</div>
+          <div class="helper-content">
+            <h4>$1000 以上</h4>
+            <p>想要特殊或稀有的品種</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="helper-step" id="helper-results">
+        <h4 style="margin-bottom: 16px;">為您推薦</h4>
+        <div id="helper-recommendations"></div>
+        <div class="helper-nav">
+          <button class="btn" onclick="restartHelper()">🔄 重新選擇</button>
+          <button class="btn primary" onclick="closeHelper()">✨ 開始選購</button>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="helper-nav" id="helper-navigation">
+        <button class="btn" onclick="helperPrevStep()" id="helper-prev" style="display: none;">← 上一步</button>
+        <button class="btn primary" onclick="helperNextStep()" id="helper-next" style="display: none;">下一步 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+// 3. JavaScript 邏輯
+let helperStep = 1;
+let helperAnswers = {};
+
+// 推薦資料（對應你網站的實際商品）
+const helperRecommendations = {
+  'beginner-low': [
+    { latin: 'Therea bernhardti', cn: '多米諾骨牌蜚蠊', price: 450, reason: '新手最愛！超好養' },
+    { latin: 'Gyna caffrorum', cn: '卡佛爾瓷蠊', price: 300, reason: '最便宜的入門選擇' }
+  ],
+  'beginner-medium': [
+    { latin: 'Therea regularis', cn: '多米諾橘骨牌蜚蠊', price: 700, reason: '顏色更漂亮' },
+    { latin: 'Gyna centurio', cn: '百夫長瓷蠊', price: 400, reason: '雌雄差異明顯' }
+  ],
+  'some-medium': [
+    { latin: 'Therea olegrandjeani', cn: '問號蜚蠊', price: 450, reason: '特殊問號花紋' }
+  ],
+  'experienced-high': [
+    { latin: 'Pseudoglomeris magnifica', cn: '越南金屬蜚蠊', price: null, reason: '華麗金屬光澤，進階挑戰' }
+  ]
+};
+
+function showHelper() {
+  document.getElementById('helper-modal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeHelper() {
+  document.getElementById('helper-modal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function selectHelperOption(step, value, element) {
+  // 清除同步驟的其他選擇
+  element.parentNode.querySelectorAll('.helper-option').forEach(opt => {
+    opt.classList.remove('selected');
+  });
+  
+  // 選中當前選項
+  element.classList.add('selected');
+  helperAnswers[step] = value;
+  
+  // 顯示下一步按鈕
+  document.getElementById('helper-next').style.display = 'block';
+}
+
+function helperNextStep() {
+  if (helperStep < 2) {
+    document.getElementById(`helper-step-${helperStep}`).classList.remove('active');
+    helperStep++;
+    document.getElementById(`helper-step-${helperStep}`).classList.add('active');
+    
+    document.getElementById('helper-prev').style.display = 'block';
+    document.getElementById('helper-next').style.display = 'none';
+  } else {
+    // 顯示結果
+    showHelperResults();
+  }
+}
+
+function helperPrevStep() {
+  if (helperStep > 1) {
+    document.getElementById(`helper-step-${helperStep}`).classList.remove('active');
+    helperStep--;
+    document.getElementById(`helper-step-${helperStep}`).classList.add('active');
+    
+    if (helperStep === 1) {
+      document.getElementById('helper-prev').style.display = 'none';
+    }
+  }
+}
+
+function showHelperResults() {
+  document.getElementById(`helper-step-${helperStep}`).classList.remove('active');
+  document.getElementById('helper-results').classList.add('active');
+  document.getElementById('helper-navigation').style.display = 'none';
+  
+  // 生成推薦
+  const key = `${helperAnswers[1]}-${helperAnswers[2]}`;
+  const recs = helperRecommendations[key] || helperRecommendations['beginner-low'];
+  
+  const html = recs.map(rec => `
+    <div class="recommendation-card" onclick="selectSpecies('${rec.latin}')">
+      <div class="rec-info">
+        <h4>${rec.cn}</h4>
+        <p>${rec.latin} | ${rec.reason}</p>
+      </div>
+      <div class="rec-price">${rec.price ? '$' + rec.price : '詢價'}</div>
+    </div>
+  `).join('');
+  
+  document.getElementById('helper-recommendations').innerHTML = html;
+}
+
+function selectSpecies(latin) {
+  // 關閉 helper，並在主頁面搜尋該物種
+  closeHelper();
+  document.getElementById('q').value = latin;
+  document.getElementById('q').dispatchEvent(new Event('input')); // 觸發搜尋
+  
+  // 滾動到結果區域
+  document.getElementById('grid').scrollIntoView({ behavior: 'smooth' });
+}
+
+function restartHelper() {
+  helperStep = 1;
+  helperAnswers = {};
+  
+  document.querySelectorAll('.helper-step').forEach(step => step.classList.remove('active'));
+  document.getElementById('helper-step-1').classList.add('active');
+  
+  document.getElementById('helper-navigation').style.display = 'flex';
+  document.getElementById('helper-prev').style.display = 'none';
+  document.getElementById('helper-next').style.display = 'none';
+  
+  document.querySelectorAll('.helper-option').forEach(opt => opt.classList.remove('selected'));
+}
+    
     // 🔍 新增：在這裡插入搜尋建議功能
     function initSearchSuggestions() {
       const searchInput = document.getElementById('q');
@@ -1746,6 +2079,24 @@ function debounce(func, wait) {
   };
 }
 
+    function initHelper() {
+  // 注入 CSS
+  const style = document.createElement('style');
+  style.textContent = helperCSS;
+  document.head.appendChild(style);
+  
+  // 注入 HTML
+  document.body.insertAdjacentHTML('beforeend', helperHTML);
+  
+  // 在工具欄加入觸發按鈕
+  const toolbar = document.querySelector('.toolbar');
+  const helperBtn = document.createElement('button');
+  helperBtn.className = 'btn primary';
+  helperBtn.innerHTML = '🔍 選購小幫手';
+  helperBtn.onclick = showHelper;
+  toolbar.appendChild(helperBtn);
+}
+    
     init();
 
     // 動態更新庫存狀態
