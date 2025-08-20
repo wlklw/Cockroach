@@ -4,7 +4,7 @@ import { showModal } from './ui.js';
 
 let helperData = {
     experience: null,
-    budget: null,
+    preferredAppearance: null,
     currentStep: 1
 };
 
@@ -18,14 +18,16 @@ function getRecommendations() {
         filtered = filtered.filter(item => item.diff <= 3);
     }
     
-    // 根據預算篩選
-    if (helperData.budget === 'low') {
-        filtered = filtered.filter(item => item.price && item.price < 500);
-    } else if (helperData.budget === 'medium') {
-        filtered = filtered.filter(item => item.price && item.price >= 500 && item.price <= 1000);
-    } else if (helperData.budget === 'high') {
-        filtered = filtered.filter(item => item.price && item.price > 1000);
-    }
+    // 根據外觀篩選
+   if (helperData.preferredAppearance === '斑點') {
+    filtered = filtered.filter(item => item.appearance === '斑點');
+} else if (helperData.preferredAppearance === '無翅不會飛') {
+    filtered = filtered.filter(item => item.appearance === '無翅不會飛');
+} else if (helperData.preferredAppearance === '質感') {
+    filtered = filtered.filter(item => item.appearance === '質感');
+} else if (helperData.preferredAppearance === '金屬反光') {
+    filtered = filtered.filter(item => item.appearance === '金屬反光');
+}
     
     // 排序：難度低的優先，價格低的優先
     return filtered.sort((a, b) => {
@@ -72,7 +74,7 @@ function closeHelper() {
 }
 
 function resetHelper() {
-    helperData = { experience: null, budget: null, currentStep: 1 };
+    helperData = { experience: null, preferredAppearance: null, currentStep: 1 };
     showStep(1);
     document.querySelectorAll('.helper-option').forEach(opt => opt.classList.remove('selected'));
 }
@@ -91,7 +93,7 @@ function showStep(step) {
         navContainer.style.display = 'flex';
     } else if (step === 2) {
         prevBtn.style.display = 'block';
-        nextBtn.style.display = helperData.budget ? 'block' : 'none';
+        nextBtn.style.display = helperData.preferredAppearance ? 'block' : 'none';
         navContainer.style.display = 'flex';
     } else {
         navContainer.style.display = 'none';
@@ -110,7 +112,7 @@ function selectHelperOption(step, value, element) {
     if (step === 1) {
         helperData.experience = value;
     } else if (step === 2) {
-        helperData.budget = value;
+        helperData.preferredAppearance = value;
     }
     
     // 顯示下一步按鈕
@@ -121,7 +123,7 @@ function selectHelperOption(step, value, element) {
 function helperNextStep() {
     if (helperData.currentStep === 1 && helperData.experience) {
         showStep(2);
-    } else if (helperData.currentStep === 2 && helperData.budget) {
+    } else if (helperData.currentStep === 2 && helperData.preferredAppearance) {
         renderRecommendations();
         showStep('results');
     }
@@ -451,30 +453,37 @@ const helperHTML = `
       </div>
 
       <!-- Step 2 -->
-      <div class="helper-step" id="helper-step-2">
-        <h4 style="margin-bottom: 16px;">您的預算範圍？</h4>
-        <div class="helper-option" data-value="low" onclick="selectHelperOption(2, 'low', this)">
-          <div class="helper-icon">💰</div>
-          <div class="helper-content">
-            <h4>$500 以下</h4>
-            <p>想先試試看，不要太貴</p>
-          </div>
-        </div>
-        <div class="helper-option" data-value="medium" onclick="selectHelperOption(2, 'medium', this)">
-          <div class="helper-icon">💳</div>
-          <div class="helper-content">
-            <h4>$500 - $1000</h4>
-            <p>可以接受中等價位的品種</p>
-          </div>
-        </div>
-        <div class="helper-option" data-value="high" onclick="selectHelperOption(2, 'high', this)">
-          <div class="helper-icon">💎</div>
-          <div class="helper-content">
-            <h4>$1000 以上</h4>
-            <p>想要特殊或稀有的品種</p>
-          </div>
-        </div>
-      </div>
+<div class="helper-step" id="helper-step-2">
+  <h4 style="margin-bottom: 16px;">喜歡的外觀？</h4>
+  <div class="helper-option" data-value="斑點" onclick="selectHelperOption(2, '斑點', this)">
+    <div class="helper-icon">🔴</div>
+    <div class="helper-content">
+      <h4>斑點</h4>
+      <p>具有可愛斑點的蜚蠊</p>
+    </div>
+  </div>
+  <div class="helper-option" data-value="無翅不會飛" onclick="selectHelperOption(2, '無翅不會飛', this)">
+    <div class="helper-icon">🐠</div>
+    <div class="helper-content">
+      <h4>無翅不會飛</h4>
+      <p>粗曠和大型是他們代名詞</p>
+    </div>
+  </div>
+  <div class="helper-option" data-value="質感" onclick="selectHelperOption(2, '質感', this)">
+    <div class="helper-icon">✨</div>
+    <div class="helper-content">
+      <h4>質感</h4>
+      <p>具有不同質感的外觀特色</p>
+    </div>
+  </div>
+  <div class="helper-option" data-value="金屬反光" onclick="selectHelperOption(2, '金屬反光', this)">
+    <div class="helper-icon">💎</div>
+    <div class="helper-content">
+      <h4>金屬反光</h4>
+      <p>在身體或翅膀上會閃閃發亮</p>
+    </div>
+  </div>
+</div>
 
       <!-- Results -->
       <div class="helper-step" id="helper-step-results">
