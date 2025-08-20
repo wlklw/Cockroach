@@ -456,28 +456,28 @@ const helperHTML = `
 <div class="helper-step" id="helper-step-2">
   <h4 style="margin-bottom: 16px;">喜歡的外觀？</h4>
   <div class="helper-option" data-value="斑點" onclick="selectHelperOption(2, '斑點', this)">
-    <div class="helper-icon">🔴</div>
+    <div class="helper-icon"> 🟤</div>
     <div class="helper-content">
       <h4>斑點</h4>
       <p>具有可愛斑點的蜚蠊</p>
     </div>
   </div>
   <div class="helper-option" data-value="無翅不會飛" onclick="selectHelperOption(2, '無翅不會飛', this)">
-    <div class="helper-icon">🐠</div>
+    <div class="helper-icon">🐛</div>
     <div class="helper-content">
       <h4>無翅不會飛</h4>
       <p>粗曠和大型是他們代名詞</p>
     </div>
   </div>
   <div class="helper-option" data-value="質感" onclick="selectHelperOption(2, '質感', this)">
-    <div class="helper-icon">✨</div>
+    <div class="helper-icon">🌟</div>
     <div class="helper-content">
       <h4>質感</h4>
       <p>具有不同質感的外觀特色</p>
     </div>
   </div>
   <div class="helper-option" data-value="金屬反光" onclick="selectHelperOption(2, '金屬反光', this)">
-    <div class="helper-icon">💎</div>
+    <div class="helper-icon">✨</div>
     <div class="helper-content">
       <h4>金屬反光</h4>
       <p>在身體或翅膀上會閃閃發亮</p>
